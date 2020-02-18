@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 
 //Initialises app
 const app = express();
@@ -9,7 +10,7 @@ require('dotenv').config(); // Sets ENV configs for DB access and other global c
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-
+app.use(cookieParser());
 
 
 const usersRouter = require('./routes/users'); //Path

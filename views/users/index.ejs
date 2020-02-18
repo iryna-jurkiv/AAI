@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
-  <h1> Hello Users </h1>
+  <h2>Welcome <%= username%></h2>
+ <form action="/api/signout" method="post">
+  <button type="submit"> Logout </button>
+ </form>
+ <a href="users/profile"><button> Profile </button></a>
 </body>
 </html>

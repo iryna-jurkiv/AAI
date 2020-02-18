@@ -24,38 +24,38 @@ https://github.com/iryna-jurkiv/AAI/projects/1
 ### Personal Objectives & Learning Plan
 
 Iryna:
--to set up a web app with Node JS from scratch and learn how it is different from other frameworks like React or Angular
--to gain proficiency in using JavaScript for both front-end and back-end
--to learn more about CSS frameworks like Bootstrap
+- to set up a web app with Node JS from scratch and learn how it is different from other frameworks like React or Angular
+- to gain proficiency in using JavaScript for both front-end and back-end
+- to learn more about CSS frameworks like Bootstrap
 
 ### Ways of Working
 
--Two Day Sprints
--Stand up every day at X time including EI check in & feedback
--Retro every day at X time including knowledge sharing & feedback
--If stuck for more than 2 hours, then will ask technical coach
--We will celebrate by X
--We will merge as soon as any feature is implemented
--We will comment out code
--We will require 2 reviewers for merge
--We will operate an open & learning culture within our team
--How we will manage front end and back end
--Naming conventions:
--we will create the final presentation ...
+- Two Day Sprints
+- Stand up every day at X time including EI check in & feedback
+- Retro every day at X time including knowledge sharing & feedback
+- If stuck for more than 2 hours, then will ask technical coach
+- We will celebrate by X
+- We will merge as soon as any feature is implemented
+- We will comment out code
+- We will require 2 reviewers for merge
+- We will operate an open & learning culture within our team
+- How we will manage front end and back end
+- Naming conventions:
+- we will create the final presentation ...
 
 
 ## Project Schedule
 
--Monday, 17th February - Learning about Node JS & how to set up a web app with Node JS
--Tuesday, 18th February - Finish setting up web app & Sign up and Sign in (Sprint start)
--Wednesday, 19th February- Log out & Profile (MVP due) (Sprint finish)
--Thursday, 20th February - (Sprint start)
--Friday, 21st February- (Sprint finish)
--Monday, 24th February- (Sprint start)
--Tuesday, 25th February - (Sprint finish)
--Wednesday, 26th February - code freeze (Sprint start)
--Thursday, 27th February- (Sprint finish)
--Friday, 28th February - Presentations
+- Monday, 17th February - Learning about Node JS & how to set up a web app with Node JS
+- Tuesday, 18th February - Finish setting up web app & Sign up and Sign in (Sprint start)
+- Wednesday, 19th February- Log out & Profile (MVP due) (Sprint finish)
+- Thursday, 20th February - (Sprint start)
+- Friday, 21st February- (Sprint finish)
+- Monday, 24th February- (Sprint start)
+- Tuesday, 25th February - (Sprint finish)
+- Wednesday, 26th February - code freeze (Sprint start)
+- Thursday, 27th February- (Sprint finish)
+- Friday, 28th February - Presentations
 
 
 ## MVP for Wednesday 19th February

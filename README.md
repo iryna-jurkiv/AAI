@@ -1,7 +1,7 @@
 # Team AAI: User Access System
 ​
-This is our final engineering project at Makers Academy.
-​
+This is our final engineering project at Makers Academy. It is a web application that allows new staff to be signed up to allow middle managers, HR, IT services and others to have a single place to setup new starters.
+
 It uses the following tech stack:
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
@@ -19,9 +19,19 @@ https://github.com/iryna-jurkiv/AAI/projects/1
 
 ### Team Objectives
 
--To be added
+- Get a good understanding of how to create a Node JS Web Application including having a good level of understanding of all of the tech stack we are using
+- To learn how to implement new features that we haven't previously worked on
+- To consolidate and implement our learning over the past 10 weeks
 
 ### Personal Objectives & Learning Plan
+
+Aaron D:
+- To create an RBAC system
+- To understand Postgres table joins and relationships
+
+Aaron R:
+- To be more comfortable writing JavaScript from scratch using Node JS
+- To fully understand every line of code in our web application
 
 Iryna:
 - to set up a web app with Node JS from scratch and learn how it is different from other frameworks like React or Angular
@@ -30,31 +40,30 @@ Iryna:
 
 ### Ways of Working
 
-- Two Day Sprints
-- Stand up every day at X time including EI check in & feedback
-- Retro every day at X time including knowledge sharing & feedback
-- If stuck for more than 2 hours, then will ask technical coach
-- We will celebrate by X
-- We will merge as soon as any feature is implemented
-- We will comment out code
-- We will require 2 reviewers for merge
-- We will operate an open & learning culture within our team
-- How we will manage front end and back end
-- Naming conventions:
-- we will create the final presentation ...
-
+- We will work in 2 day Sprints and at the end of each sprint we will show each other what we have worked on (knwoledge sharing)
+- Stand up every day at 10 a.m. including Emotional Intelligence check in & feedback
+- Retro every day at 4:30 p.m. time including knowledge sharing & feedback
+- If stuck for more than 2 hours, then we will ask technical coach for help
+- We will celebrate by going for coffee/food
+- We will merge as soon as any new feature is implemented
+- We will comment out our code so others can understand it
+- We will require 1 review for each merge
+- We will operate an open & learning culture within our team where anyone can ask questions/speak openly
+- How we will manage front end and back end - Once we have finished our MVP
+- We will do a combination of working on our own & pairing (as a group of 3)
+- We will create the final presentation as we go (next week predominantly)
 
 ## Project Schedule
 
 - Monday, 17th February - Learning about Node JS & how to set up a web app with Node JS
 - Tuesday, 18th February - Finish setting up web app & Sign up and Sign in (Sprint start)
 - Wednesday, 19th February- Log out & Profile (MVP due) (Sprint finish)
-- Thursday, 20th February - (Sprint start)
-- Friday, 21st February- (Sprint finish)
-- Monday, 24th February- (Sprint start)
-- Tuesday, 25th February - (Sprint finish)
-- Wednesday, 26th February - code freeze (Sprint start)
-- Thursday, 27th February- (Sprint finish)
+- Thursday, 20th February -  TBC
+- Friday, 21st February- TBC
+- Monday, 24th February- TBC
+- Tuesday, 25th February - TBC
+- Wednesday, 26th February - TBC
+- Thursday, 27th February- TBC
 - Friday, 28th February - Presentations
 
 
@@ -65,7 +74,7 @@ Iryna:
 - Allow a user to logout
 - Allow a logged in user to see their current profile details
 ​
-## List of features & User Stories Prioritised 
+## List of features & User Stories Prioritised
 
 - Allow a user to be added to the database and assign access levels
 - Allow a user to login

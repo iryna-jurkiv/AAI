@@ -1,0 +1,33 @@
+{
+  "name": "aai",
+  "version": "1.0.0",
+  "description": "Final engineering project for Makers Academy Apprenticeship Bootcamp",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "lint": "eslint .",
+    "test": "npm run lint && npm run test:unit && npm run test:integration",
+    "test:unit": "jest",
+    "test:integration": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iryna-jurkiv/AAI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iryna-jurkiv/AAI/issues"
+  },
+  "homepage": "https://github.com/iryna-jurkiv/AAI#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "pg": "^7.18.1"
+  },
+  "devDependencies": {
+    "cypress": "^4.0.2",
+    "eslint": "^6.8.0",
+    "jest": "^25.1.0"
+  }
+}

@@ -4,7 +4,13 @@ const {client} = require('../db/db_config');
 
 
 router.post('/signup', (req, res) => {
-    console.log(req)
+    const {username, email, password } = req.body;
+
+    console.log(req.body);
+    res.json({
+        message: 'Post Success',
+        requestBody: req.body
+    })
 });
 
 

@@ -1,9 +1,9 @@
 const express = require('express');
-const {client} = require('./db/db_config');
 
 //Initialises app
 const app = express();
 
+require('dotenv').config(); // Sets ENV configs for DB access and other global configs
 
 //Load View Engine
 app.set('view engine', 'ejs');

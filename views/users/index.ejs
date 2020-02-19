@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
+
+<%- include('partials/nav') %>
+
   <h2>Welcome <%= username%></h2>
  <form action="/api/signout" method="post">
   <button type="submit"> Logout </button>

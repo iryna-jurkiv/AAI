@@ -21,13 +21,18 @@ router.get('/signin', (req, res) => {
 
 router.get('/profile',async (req, res) => {
         try{
+
         const foundUser = await client.query(`SELECT * FROM users WHERE username = '${req.cookies['username']}'`);
-        console.log(foundUser.rows[0])
-        res.render('users/profile',{
-            username: foundUser.rows[0]['username'],
-            email: foundUser.rows[0]['email']
-        }) 
-        }catch(err){
+        if(req.cookies.username) {
+            res.render('users/profile',{
+                username: foundUser.rows[0]['username'],
+                email: foundUser.rows[0]['email']
+            })
+        } else {
+            res.render('users/signin', {message: 'You are not logged in'})
+        }
+
+        } catch(err){
             res.json({
                 message: 'Error Loading profile',
                 err

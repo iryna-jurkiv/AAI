@@ -5,8 +5,24 @@ const bcrypt = require('bcrypt');
 const cookies = require('cookie-parser');
 let SALT = 10
 
-router.post('/signup',async (req, res) => {
 
+router.post('/addemployee', async (req, res) => {
+    const {firstname, lastname, jobtitle, employeenumber, email } = req.body;
+    try{
+       await client.query(`INSERT INTO employees (first_name, last_name, job_title, employee_number, email) 
+        VALUES ('${firstname}','${lastname}','${jobtitle}','${employeenumber}','${email}')`);
+        res.redirect('/users/addemployee')
+    }catch(err){
+        console.log(err)
+       res.json({
+           message: 'Error',
+           err     
+        })
+    }
+})
+
+
+router.post('/signup',async (req, res) => {
 const {username, email, password } = req.body;
     try{
         let hashedPassword = await bcrypt.hash(password, SALT)
@@ -14,7 +30,7 @@ const {username, email, password } = req.body;
         res.redirect('/users/signin')
     }catch(err){
         res.json({
-            message: 'Error Signing Up',
+            message: 'Error',
             err
         })
     }

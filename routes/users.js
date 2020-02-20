@@ -15,7 +15,7 @@ router.get('/signup', (req, res) => {
 });
 
 router.get('/signin', (req, res) => {
-    res.render('users/signin');
+    res.render('users/signin', {message: 'You are not currently signed in'});
 });
 
 

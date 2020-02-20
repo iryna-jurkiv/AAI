@@ -9,7 +9,8 @@
 
 <%- include('partials/nav') %>
 
-  <h2>Welcome <%= username%></h2>
+<class="welcome">
+  <h2 class = 'welcome'>Welcome <%= username%></h2>
  <form action="/api/signout" method="post">
   <button type="submit"> Logout </button>
  </form>

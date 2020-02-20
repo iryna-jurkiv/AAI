@@ -26,7 +26,7 @@ router.post('/signin',async (req, res) => {
     try{
     const foundUser = await client.query(`SELECT * FROM users WHERE username = '${username}'`);
     const compare = await (bcrypt.compare(password, foundUser.rows[0]['password']))
-    if (compare === true) { 
+    if (compare === true) {
         res.cookie('username', foundUser.rows[0]['username'])
         res.redirect('/users')
     } else {

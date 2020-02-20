@@ -1,4 +1,4 @@
-CREATE TABLE users(
+CREATE TABLE users (
    user_id serial PRIMARY KEY,
    username VARCHAR (50) UNIQUE NOT NULL,
    password VARCHAR (500) NOT NULL,
@@ -6,4 +6,3 @@ CREATE TABLE users(
    created_on TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
    last_login TIMESTAMP
 );
-

@@ -32,6 +32,7 @@ Aaron D:
 Aaron R:
 - To be more comfortable writing JavaScript from scratch using Node JS
 - To fully understand every line of code in our web application
+- To gain proficiency in GitHub (i.e. merges, branches etc)
 
 Iryna:
 - to set up a web app with Node JS from scratch and learn how it is different from other frameworks like React or Angular

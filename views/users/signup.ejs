@@ -7,17 +7,60 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Signup Page</title>
 </head>
-<%- include('partials/cssPartials') %>
+
+<link rel="stylesheet" href="/css/form.css">
 
 <body>
-<%- include('partials/nav') %>
 
 
-<form id="sign-up-form" action="/api/signup" method="post">
-    Username: <input id="username" type="text" name="username">
-    Password: <input id="password" type="password" name="password">
-    Email Address: <input id="email" type="email" name="email">
-    <button>Submit</button>
-</form>
+
+    <div class="container">
+        <form id="sign-up-form" action="/api/signup" method="post" class="form">
+            <h2>Register With Us</h2>
+            <div class="form-control">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" />
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="Enter email" />
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" />
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label for="password2">Confirm Password</label>
+                <input
+                        type="password"
+                        id="password2"
+                        placeholder="Enter password again"
+                        name="password2"
+                />
+                <small>Error message</small>
+            </div>
+            <button type="submit">Submit</button>
+        </form> <p>Or sign in with your account</p>
+        <form action="/users/signin" method="get" class="form">
+            <button>Sign In</button>
+        </form>
+</div>
+
+
+<!--<form id="sign-up-form" action="/api/signup" method="post">-->
+<!--    Username: <input id="username" type="text" name="username">-->
+<!--    Password: <input id="password" type="password" name="password">-->
+<!--    Email Address: <input id="email" type="email" name="email">-->
+<!--    <button>Submit</button>-->
+<!--</form>-->
+<%- include('partials/jsPartials') %>
+
+<script src="/js/formControl.js"></script>
+
 </body>
 </html>
+
+

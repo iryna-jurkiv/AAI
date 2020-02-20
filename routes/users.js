@@ -3,10 +3,19 @@ const router = express.Router();
 const {client} = require('../db/db_config');
 
 
+
+router.get('/addemployee', (req, res) => {
+    if(req.cookies.username) {
+    res.render('users/addemployee');
+    }else{
+      res.render('users/signin', {message: 'You are not logged in'})
+    }
+ });
+
 router.get('/', (req, res) => {
     res.render('users/index',{
         username: req.cookies['username']
-    }
+       }
     );
 });
 
@@ -17,7 +26,6 @@ router.get('/signup', (req, res) => {
 router.get('/signin', (req, res) => {
     res.render('users/signin', {message: 'You are not currently signed in'});
 });
-
 
 router.get('/profile',async (req, res) => {
         try{

@@ -88,8 +88,6 @@ router.post('/signin',async (req, res) => {
             url:'http://localhost:3000/users/signin'
          })
         }
-
-
     }catch(err){
         res.json({
             message: 'Error Logging In',

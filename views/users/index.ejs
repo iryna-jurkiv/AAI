@@ -11,6 +11,13 @@
 
 <class="welcome">
   <h2 class = 'welcome'>Welcome <%= username%></h2>
+<br>
+  
+  <form id="search" action="/users/searchResults" >
+    Search employee's first name: <input type="text" name="firstname"> 
+    <button> Submit </button>
+</form>
+<br>
  <form action="/api/signout" method="post">
   <button type="submit"> Logout </button>
  </form>

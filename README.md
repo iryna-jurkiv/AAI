@@ -59,9 +59,10 @@ Iryna:
 - Monday, 17th February - Learning about Node JS & how to set up a web app with Node JS
 - Tuesday, 18th February - Finish setting up web app & Sign up and Sign in (Sprint start)
 - Wednesday, 19th February- Log out & Profile (MVP due) (Sprint finish)
-- Thursday, 20th February -  TBC
-- Friday, 21st February- TBC
-- Monday, 24th February- TBC
+- Thursday, 20th February -  Search Bar, Nav Bar & Email Requests sent to Employees to login
+- Friday, 21st February- JQuery & AJAX call updating profile + add start date- DONE , add manager email for users, searching by name or employee id, table for all things needed (all in one table)
+WEEKEND: Bootstrap research
+- Monday, 24th February- departments & managers
 - Tuesday, 25th February - TBC
 - Wednesday, 26th February - TBC
 - Thursday, 27th February- TBC

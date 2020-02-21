@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
+<%- include('partials/cssPartials') %>
+
 <body>
 
   <%- include('partials/nav') %>
@@ -13,5 +15,7 @@
  <form action="/api/employeessignout" method="post">
   <button type="submit"> Logout </button>
  </form>
+  <%- include('partials/jsPartials') %>
+
 </body>
 </html>

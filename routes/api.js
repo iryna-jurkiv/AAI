@@ -4,6 +4,7 @@ const {client} = require('../db/db_config');
 const bcrypt = require('bcrypt');
 const cookies = require('cookie-parser');
 const nodemailer = require('nodemailer')
+// eslint-disable-next-line no-undef
 require('dotenv').config(); // Sets ENV configs for DB access and other global configs
 let SALT = 10
 

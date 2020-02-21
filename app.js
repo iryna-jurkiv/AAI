@@ -33,6 +33,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.static('public'));
 
 const employeesRouter = require('./routes/employees'); //Path
 const usersRouter = require('./routes/users'); //Path
@@ -42,4 +43,4 @@ app.use('/employees', employeesRouter); // sets up the route for the user page, 
 app.use('/users', usersRouter); // sets up the route for the user page, this links the variable to the route's folder.
 app.use('/api', apiRouter); // sets up the route for the user page, this links the variable to the route's folder.
 
-module.exports = app
+module.exports = app;

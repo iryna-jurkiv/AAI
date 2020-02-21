@@ -10,13 +10,14 @@ let SALT = 10
 
 
 router.post('/addemployee', async (req, res) => {
-  console.log(req.body.startdate)
-    const {firstname, lastname, jobtitle, startdate, employeenumber, email } = req.body;
+  // console.log(req.body)
+    const {firstname, lastname, jobtitle, startdate, employeenumber, email, manager } = req.body;
     try{
-       await client.query(`INSERT INTO employees (first_name, last_name, job_title, start_date, employee_number, email)
-        VALUES ('${firstname}','${lastname}','${jobtitle}','${startdate}','${employeenumber}','${email}')`);
+       await client.query(`INSERT INTO employees (first_name, last_name, job_title, start_date, employee_number, email, manager)
+        VALUES ('${firstname}','${lastname}','${jobtitle}','${startdate}','${employeenumber}','${email}','${manager}')`);
       let employee = await client.query(`SELECT * FROM employees WHERE employee_number = '${employeenumber}'`);
-      console.log(employee.rows[0])
+      let managers = await client.query(`SELECT * FROM users WHERE fullname = '${manager}' `);
+      console.log(managers.rows[0]['email'])
         let transporter = nodemailer.createTransport({
           service: 'gmail',
           auth:{
@@ -29,7 +30,7 @@ router.post('/addemployee', async (req, res) => {
         let mailOptions = {
           from: 'aaiteam20@gmail.com',
           to: req.body.email,
-          bcc: 'aaiteam20@gmail.com',
+          // bcc: 'aaiteam20@gmail.com',
           subject: 'Login Details',
           html: '<!DOCTYPE html>'+
                 '<html><head><title>AAI Login Details</title>'+
@@ -43,12 +44,39 @@ router.post('/addemployee', async (req, res) => {
                 '<p>The AAI Team</p>'+
                 '</div></body></html>'
               };
-        transporter.sendMail(mailOptions, function(err,data){
+
+              let mailOptionsTwo = {
+                from: 'aaiteam20@gmail.com',
+                to: managers.rows[0]['email'],
+                // bcc: 'aaiteam20@gmail.com',
+                subject: 'New Employee Assigned',
+                html: '<!DOCTYPE html>'+
+                      '<html><head><title>AAI Login Details</title>'+
+                      '</head><body><div>'+
+                      '<p>Dear Manager </p>'+
+                      '<p>We are pleased to inform you that you have been assigned a new member of staff. Please visit AAI portal http://localhost:3000/users/signin to set up their profile. </p>' +
+                      '<br>' + 
+                      '<p>Kind Regards, </p>'+
+                      '<p>The AAI Team</p>'+
+                      '</div></body></html>'
+                    };
+
+        transporter.sendMail(mailOptions,  function(err,data){
           if (err) {
             console.log('Error occurs', err);
           } else {
             console.log('Email sent')
           }
+
+        });
+
+          transporter.sendMail(mailOptionsTwo, function(err,data){
+            if (err) {
+              console.log('Error occurs', err);
+            } else {
+              console.log('Email sent')
+            }
+
         });
         res.redirect('/users/addemployee')
     }catch(err){
@@ -62,10 +90,10 @@ router.post('/addemployee', async (req, res) => {
 
 
 router.post('/signup',async (req, res) => {
-const {username, email, password } = req.body;
+const {fullname, email, password, access } = req.body;
     try{
         let hashedPassword = await bcrypt.hash(password, SALT)
-        await client.query(`INSERT INTO users (username, password, email) VALUES ('${username}','${hashedPassword}','${email}')`);
+        await client.query(`INSERT INTO users (fullname, password, email, access) VALUES ('${fullname}','${hashedPassword}','${email}','${access}')`);
         res.redirect('/users/signin')
     }catch(err){
         res.json({
@@ -77,12 +105,12 @@ const {username, email, password } = req.body;
 
 
 router.post('/signin',async (req, res) => {
-    const {username, password } = req.body;
+    const {email, password } = req.body;
     try{
-    const foundUser = await client.query(`SELECT * FROM users WHERE username = '${username}'`);
+    const foundUser = await client.query(`SELECT * FROM users WHERE email = '${email}'`);
     const compare = await (bcrypt.compare(password, foundUser.rows[0]['password']))
     if (compare === true) {
-        res.cookie('username', foundUser.rows[0]['username'])
+        res.cookie('email', foundUser.rows[0]['email'])
         res.redirect('/users')
     } else {
         res.json ({
@@ -127,7 +155,7 @@ router.post('/employeessignout', async (req, res) => {
 })
 
 router.post('/signout', async (req, res) => {
-   res.clearCookie('username')
+   res.clearCookie('email')
    res.redirect('/users/signin')
 })
 

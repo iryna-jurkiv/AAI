@@ -6,5 +6,6 @@ CREATE TABLE employees(
    start_date DATE,
    employee_number VARCHAR UNIQUE NOT NULL,
    email VARCHAR (355) UNIQUE NOT NULL,
+   manager VARCHAR (100) NOT NULL,
    created_on TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );

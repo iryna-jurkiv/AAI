@@ -18,6 +18,16 @@
         Start Date: <input type="date" name="startdate">
         Employee number: <input type="text" name="employeenumber">
         Email <input type="email" name="email">
+
+
+
+        <label for="manager">Manager</label>
+        <select name="manager" id="manager">
+        <% foundManagers.rows.forEach(function(manager){ %>
+        <option value='<%= manager.fullname %>'><%= manager.fullname %> 
+            <% }); %>
+        </option>        
+        </select>
         <button> Submit </button>
     </form>
 

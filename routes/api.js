@@ -10,10 +10,11 @@ let SALT = 10
 
 
 router.post('/addemployee', async (req, res) => {
-    const {firstname, lastname, jobtitle, employeenumber, email } = req.body;
+  console.log(req.body.startdate)
+    const {firstname, lastname, jobtitle, startdate, employeenumber, email } = req.body;
     try{
-       await client.query(`INSERT INTO employees (first_name, last_name, job_title, employee_number, email)
-        VALUES ('${firstname}','${lastname}','${jobtitle}','${employeenumber}','${email}')`);
+       await client.query(`INSERT INTO employees (first_name, last_name, job_title, start_date, employee_number, email)
+        VALUES ('${firstname}','${lastname}','${jobtitle}','${startdate}','${employeenumber}','${email}')`);
       let employee = await client.query(`SELECT * FROM employees WHERE employee_number = '${employeenumber}'`);
       console.log(employee.rows[0])
         let transporter = nodemailer.createTransport({
@@ -34,7 +35,7 @@ router.post('/addemployee', async (req, res) => {
                 '<html><head><title>AAI Login Details</title>'+
                 '</head><body><div>'+
                 '<p>Dear Candidate </p>'+
-                '<p>Welcome to AAI User Access Management System. Please go to http://localhost:3000/users/signin and use the following email and temporary password to sign in and view your profile </p>'
+                '<p>Welcome to AAI User Access Management System. Please go to http://localhost:3000/employees/employeessignin and use the following email and temporary password to sign in and view your profile </p>'
                 + employee.rows[0]['email'] +
                 '<br>'
                 + employee.rows[0]['password']+

@@ -20,6 +20,7 @@ router.get('/employeesprofile',async (req, res) => {
                 firstname: foundEmployee.rows[0]['first_name'],
                 lastname: foundEmployee.rows[0]['last_name'],
                 job_title: foundEmployee.rows[0]['job_title'],
+                start_date: foundEmployee.rows[0]['start_date'],
                 employee_number: foundEmployee.rows[0]['employee_number'],
                 email: foundEmployee.rows[0]['email'],
 

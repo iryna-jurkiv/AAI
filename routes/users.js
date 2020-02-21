@@ -27,6 +27,19 @@ router.get('/signin', (req, res) => {
     res.render('users/signin', {message: 'You are not currently signed in'});
 });
 
+router.get('/allemployees', (req, res) => {
+    res.render('users/employeelist', {message: 'You are not currently signed in'});
+});
+
+router.get('/profile/:id', async(req, res) => {
+    let userID = parseInt(req.params.id)
+    const foundUser = await client.query(`SELECT * FROM employees WHERE employee_number = '${userID}'`);
+    console.log(foundUser.rows[0])
+    res.render('users/editprofile', {
+        foundUser: foundUser.rows[0]
+    })
+})
+
 router.get('/profile',async (req, res) => {
         try{
         const foundUser = await client.query(`SELECT * FROM users WHERE username = '${req.cookies['username']}'`);

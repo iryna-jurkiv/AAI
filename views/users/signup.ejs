@@ -18,8 +18,8 @@
         <form id="sign-up-form" action="/api/signup" method="post" class="form">
             <h2>Register With Us</h2>
             <div class="form-control">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter username" />
+                <label for="fullname">Full name</label>
+                <input type="text" id="fullname" name="fullname" placeholder="Enter Full name" />
                 <small>Error message</small>
             </div>
             <div class="form-control">
@@ -42,6 +42,17 @@
                 />
                 <small>Error message</small>
             </div>
+
+            <div>
+                <label for="access">Choose an access level:</label>
+                    <select name="access" id="access">
+                    <option value="HR">HR</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Basic">Basic</option>
+                    </select>
+            </div>
+
+
             <button type="submit">Submit</button>
         </form> <p>Or sign in with your account</p>
         <form action="/users/signin" method="get" class="form">

@@ -8,7 +8,7 @@ const password2 = document.getElementById('password2');
 
 function showError(input, message) {
     const formControl = input.parentElement;
-    formControl.className = 'form-control error'
+    formControl.className = 'form-control error';
     const small = formControl.querySelector('small');
     small.innerText = message;
 
@@ -65,6 +65,7 @@ function checkPasswordsMatch(input1, input2) {
 
 form.addEventListener('submit', function(e) {
 
+    e.preventDefault();
     checkRequired([username, email, password, password2]);
     checkLength(username, 3, 15);
     checkLength(password, 6, 25);

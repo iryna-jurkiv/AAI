@@ -53,7 +53,7 @@ router.get('/profile',async (req, res) => {
         try{
         const foundUser = await client.query(`SELECT * FROM employees WHERE first_name = '${firstname}'`);
         if (foundUser) {
-            console.log(foundUser)
+            console.log(foundUser);
             res.render('users/searchResults',{foundUsers: foundUser} )
         } else {
             res.json ({

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<%- include('partials/cssPartials') %>
+
+<body>
+<%- include('partials/nav') %>
+
+<h1>Edit profile page</h1>
+
+    <form action="/api/updateemployee" method="post">
+        Employee ID: <input type="text" name="employee_number" value='<%= foundUser.employee_number %>'><br><br>
+        First name: <input type="text" name="first_name" value='<%= foundUser.first_name %>'>
+        Last name: <input type="text" name="last_name" value='<%= foundUser.last_name %>'><br><br>
+        Job Title <input type="text" name="job_title" value='<%= foundUser.job_title %>'><br><br>
+        Email Address: <input type="text" name="email" value='<%= foundUser.email %>'><br><br>
+        Date Created: <input type="datetime" value='<%= foundUser.created_on %>'><br><br>
+
+        <button>Write Changes</button>
+    </form>
+
+
+<%- include('partials/jsPartials') %>
+
+</body>
+</html>

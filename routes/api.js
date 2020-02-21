@@ -8,6 +8,12 @@ const nodemailer = require('nodemailer')
 require('dotenv').config(); // Sets ENV configs for DB access and other global configs
 let SALT = 10
 
+router.get('/allemployees', async (req, res) => {
+    let data = await client.query('SELECT * FROM employees')
+    res.json({
+        res: data
+    })
+})
 
 router.post('/addemployee', async (req, res) => {
   // console.log(req.body)
@@ -86,6 +92,26 @@ router.post('/addemployee', async (req, res) => {
            err
         })
     }
+})
+
+router.post('/deleteuser/:id', async (req, res) => {
+    console.log(req.params.id)
+    await client.query(`DELETE FROM employees WHERE employee_number = '${req.params.id}'`)
+    res.redirect('/users/allemployees')
+})
+
+router.post('/updateemployee', async(req, res) => {
+    const {first_name, last_name, job_title, employee_number, email } = req.body;
+    userID = parseInt(employee_number)
+
+    await client.query(`UPDATE employees SET first_name = '${first_name}', 
+                        last_name = '${last_name}', job_title = '${job_title}', email = '${email}' 
+                        WHERE employee_number = '${userID}';`)
+
+    res.json({
+        message: req.body
+    })
+
 })
 
 

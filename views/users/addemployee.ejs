@@ -9,24 +9,24 @@
 <body>
 
     <%- include('partials/nav') %>
-    <h1>Add Employee</h1>
+    <h1 class="addemployee">Add Employee</h1>
 
-    <form action="/api/addemployee" method="post">
-        First name: <input type="text" name="firstname">
-        Last name: <input type="text" name="lastname">
-        Jobtitle: <input type="text" name="jobtitle">
-        Start Date: <input type="date" name="startdate">
-        Employee number: <input type="text" name="employeenumber">
-        Email <input type="email" name="email">
+    <form id="add-employee" action="/api/addemployee" method="post">
+        First name: <input type="text" id="firstname" name="firstname">
+        Last name: <input type="text" id="lastname" name="lastname">
+        Jobtitle: <input type="text" id="jobtitle" name="jobtitle">
+        Start Date: <input type="date" id="startdate" name="startdate">
+        Employee number: <input type="text" id="employeenumber" name="employeenumber">
+        Email <input type="email" id="email" name="email">
 
 
 
         <label for="manager">Manager</label>
         <select name="manager" id="manager">
         <% foundManagers.rows.forEach(function(manager){ %>
-        <option value='<%= manager.fullname %>'><%= manager.fullname %> 
+        <option value='<%= manager.fullname %>'><%= manager.fullname %>
             <% }); %>
-        </option>        
+        </option>
         </select>
         <button> Submit </button>
     </form>

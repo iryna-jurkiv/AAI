@@ -12,9 +12,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "lint": "eslint .",
-    "test": "set NODE_ENV=test && npm run lint && npm run test:unit && npm run test:integration",
-    "test:unit": "jest",
-    "test:integration": "cypress run",
+    "test": "set NODE_ENV =test && jest && npm run cypress:open",
     "cypress:open": "cypress open"
   },
   "repository": {

@@ -63,21 +63,20 @@ router.get('/profile',async (req, res) => {
     });
 
     router.get('/searchResults', async (req, res) => {
-        // console.log(req.query.firstname)
         const {firstname} = req.query;
         try{
         const foundUser = await client.query(`SELECT * FROM employees WHERE first_name = '${firstname}'`);
         if (foundUser) {
-            // console.log(foundUser);
+            console.log(foundUser);
             res.render('users/searchResults',{foundUsers: foundUser} )
         } else {
             res.json ({
-                message: 'error',
+                message: 'No user found. Please try again'
              })
             }
         }catch(err){
             res.json({
-                message: 'Error Logging In',
+                message: 'Error Searching',
                 err
             })
         }

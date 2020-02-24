@@ -30,6 +30,10 @@ module.exports = {
             return knex('users')
                 .where('user_id', id)
                 .del();
+        },
+        getByAccessLevel: function (access_level) {
+            return knex('users_table').where('access_level', access_level)
+
         }
     },
     accessLevel: {

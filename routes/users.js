@@ -32,9 +32,16 @@ router.get('/allemployees', async(req, res) => {
 router.get('/addemployee', async (req, res) => {
     // Create search for manager function here
 
-    // const foundManagers = await client.query(`SELECT * FROM users WHERE access = 'Manager'`);
-    // console.log(foundManagers.rows)
-        res.render('users/addemployee', );
+    const foundManagers = await queries.users
+        .getByAccessLevel(1)
+        .then(data => {
+            return data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    console.log(foundManagers)
+        res.render('users/addemployee', {foundManagers});
 });
 
 

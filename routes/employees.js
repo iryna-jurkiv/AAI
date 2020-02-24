@@ -10,11 +10,6 @@ router.get('/', (req, res) => {
        });
 });
 
-// No Changes
-router.get('/employeessignin', (req, res) => {
-    res.render('employees/employeessignin');
-});
-
 // To Change (Changed to return a blob of data, ejs view needs to reflect this and changed to user ID rather then first name)
 router.get('/employeesprofile',async (req, res) => {
 

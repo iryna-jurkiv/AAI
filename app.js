@@ -35,10 +35,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
 
+const rootRouter = require('./routes/rootRouter'); //Path
 const employeesRouter = require('./routes/employees'); //Path
 const usersRouter = require('./routes/users'); //Path
 const apiRouter = require('./routes/api'); //Path
 
+app.use('/', rootRouter);
 app.use('/employees', employeesRouter); // sets up the route for the user page, this links the variable to the route's folder.
 app.use('/users', usersRouter); // sets up the route for the user page, this links the variable to the route's folder.
 app.use('/api', apiRouter); // sets up the route for the user page, this links the variable to the route's folder.

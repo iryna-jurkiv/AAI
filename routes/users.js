@@ -44,25 +44,12 @@ router.get('/addemployee', async (req, res) => {
         res.render('users/addemployee', {foundManagers});
 });
 
-
-// NO Changes - TO DELETE
-// router.get('/signup', (req, res) => {
-//     res.render('users/signup');
-// });
-
-// No changes needed
-router.get('/signin', (req, res) => {
-    res.render('users/signin', {message: 'You are not currently signed in'});
-});
-
-
-
 // Done
 router.get('/profile/:id', async(req, res) => {
     let userID = parseInt(req.params.id)
 
     let foundUser = await queries.users
-        .getOne(userID)
+        .getOneByEmployeeNumber(userID)
         .then(data => {
             return data
         })
@@ -70,7 +57,6 @@ router.get('/profile/:id', async(req, res) => {
             console.log(err)
         })
     // const foundUser = await client.query(`SELECT * FROM employees WHERE employee_number = '${userID}'`);
-    console.log(foundUser)
     res.render('users/editprofile', {
         foundUser: foundUser
     })
@@ -92,6 +78,10 @@ router.get('/profile',async (req, res) => {
             res.render('users/signin', {message: 'You are not logged in'})
         }
     });
+
+router.get('/requests/:id', (req, res) => {
+
+})
 
 // Complete (Do we want to change this to user ID rather then first name?
 router.get('/searchResults', async (req, res) => {

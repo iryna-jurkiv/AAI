@@ -11,6 +11,9 @@ module.exports = {
         getOne: function(id) {
             return knex('users_table').where('user_id', id).first()
         },
+        getOneByEmployeeNumber: function(id) {
+            return knex('users_table').where('employee_number', id).first()
+        },
         getOneByEmail: function(email) {
             return knex('users_table').where('email', email)
         },
@@ -19,15 +22,15 @@ module.exports = {
 
         },
         create: function(user) {
-            return knex('users').insert(user).returning('*')
+            return knex('users_table').insert(user).returning('*')
         },
         update: (id, user) => {
-            return knex('users')
-                .where('user_id', id)
+            return knex('users_table')
+                .where('employee_number', id)
                 .update(user, 'user_id')
         },
         delete: (id) => {
-            return knex('users')
+            return knex('users_table')
                 .where('user_id', id)
                 .del();
         },
@@ -65,7 +68,7 @@ module.exports = {
         getOne: function () {
             console.log('Create this function') // To be created
         },
-        delete: function (id) {
+        delete: function () {
             console.log('Create this function') // To be created
         }
     }

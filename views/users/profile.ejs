@@ -10,8 +10,9 @@
 <body>
 <%- include('partials/nav') %>
 
-<h1 class="profile"> <%= email%>'s profile</h1>
- <h2> Your access level - <%= access%> </h2>
+<h1 class="profile"> <%= foundUser.email %>'s profile</h1>
+ <h2> Your access level - <%= foundUser.access_level %> </h2>
+
 <%- include('partials/jsPartials') %>
 
 </body>

@@ -1,19 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const {client} = require('../db/db_config');
+// const {client} = require('../db/db_config');
+const queries = require('../db/knexQueries');
 
 
 
-router.get('/addemployee', async (req, res) => {
-    const foundManagers = await client.query(`SELECT * FROM users WHERE access = 'Manager'`);
-    // console.log(foundManagers.rows)
-    if(req.cookies.email) {
-    res.render('users/addemployee', {foundManagers: foundManagers});
-    }else{
-      res.render('users/signin', {message: 'You are not logged in'})
-    }
- });
-
+// Completed
 router.get('/', (req, res) => {
     res.render('users/index',{
         email: req.cookies['email']
@@ -21,66 +13,95 @@ router.get('/', (req, res) => {
     );
 });
 
-router.get('/signup', (req, res) => {
-    res.render('users/signup');
+// Completed
+router.get('/allemployees', async(req, res) => {
+    let allUsers = await queries.users
+        .getAll()
+        .then(data => {
+            return data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+    res.render('users/employeelist', {message: 'You are not currently signed in', allUsers});
 });
 
-router.get('/signin', (req, res) => {
-    res.render('users/signin', {message: 'You are not currently signed in'});
+
+// TODO
+router.get('/addemployee', async (req, res) => {
+    // Create search for manager function here
+
+    const foundManagers = await queries.users
+        .getByAccessLevel(1)
+        .then(data => {
+            return data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    console.log(foundManagers)
+        res.render('users/addemployee', {foundManagers});
 });
 
-router.get('/allemployees', (req, res) => {
-    res.render('users/employeelist', {message: 'You are not currently signed in'});
-});
-
+// Done
 router.get('/profile/:id', async(req, res) => {
     let userID = parseInt(req.params.id)
-    const foundUser = await client.query(`SELECT * FROM employees WHERE employee_number = '${userID}'`);
-    console.log(foundUser.rows[0])
+
+    let foundUser = await queries.users
+        .getOneByEmployeeNumber(userID)
+        .then(data => {
+            return data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    // const foundUser = await client.query(`SELECT * FROM employees WHERE employee_number = '${userID}'`);
     res.render('users/editprofile', {
-        foundUser: foundUser.rows[0]
+        foundUser: foundUser
     })
 })
 
+
+// Done BUT cookies not working yet
 router.get('/profile',async (req, res) => {
-        try{
-        const foundUser = await client.query(`SELECT * FROM users WHERE email = '${req.cookies['email']}'`);
+        const foundUser = await queries.users
+            .getOneByEmail(req.cookies['email'])
+            .then(data => {
+                return data
+            })
         if(req.cookies.email) {
             res.render('users/profile',{
-                email: foundUser.rows[0]['email'],
-                access: foundUser.rows[0]['access']
+                foundUser: foundUser[0]
             })
         } else {
             res.render('users/signin', {message: 'You are not logged in'})
         }
-
-        }catch(err){
-            res.json({
-                message: 'Error Loading profile',
-                err
-            })
-        }
     });
 
-    router.get('/searchResults', async (req, res) => {
-        const {firstname} = req.query;
-        try{
-        const foundUser = await client.query(`SELECT * FROM employees WHERE first_name = '${firstname}'`);
-        if (foundUser) {
-            console.log(foundUser);
-            res.render('users/searchResults',{foundUsers: foundUser} )
-        } else {
-            res.json ({
-                message: 'No user found. Please try again'
-             })
-            }
-        }catch(err){
-            res.json({
-                message: 'Error Searching',
-                err
-            })
-        }
+router.get('/requests/:id', (req, res) => {
 
-    });
+})
+
+// Complete (Do we want to change this to user ID rather then first name?
+router.get('/searchResults', async (req, res) => {
+    const {firstname} = req.query;
+
+    const foundUser = await queries.users
+        .getOneByName(firstname)
+        .then(data => {
+            return data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    if (foundUser) {
+        res.render('users/searchResults',{foundUsers: foundUser} )
+    } else {
+        res.json ({
+            message: 'No user found. Please try again'
+         })
+        }
+});
 
 module.exports = router;

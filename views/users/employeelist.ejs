@@ -10,55 +10,35 @@
 <body>
 
     <%- include('partials/nav') %>
-<h1>Employee List</h1>
-
-<button id="showEmployees">Show Employee List</button>
-
+    <h1>Employee List</h1>
 <table class="table" id="records_table">
-      <tr>
+
+    <tr>
         <th scope="col">Employee Number</th>
         <th scope="col">Full Name</th>
         <th scope="col">Department</th>
         <th scope="col">Email Address</th>
+        <th scope="col">Access Level</th>
         <th scope="col">Options</th>
-      </tr>
-  </table>
+    </tr>
+    <% for (let i = 0; i < allUsers.length; i++) { %>
 
+    <tr>
+            <td><%= allUsers[i].employee_number%></td>
+            <td><%= allUsers[i].first_name %> <%= allUsers[i].last_name %></td>
+            <td><%= allUsers[i].department%></td>
+            <td><%= allUsers[i].email%></td>
+            <td><%= allUsers[i].access_level%></td>
+            <td><a class="btn btn-danger mr-1" href="/users/profile/<%= allUsers[i].employee_number%>/">Edit Profile</a>
+                <a class="btn btn-success" href="/users/requests/<%= allUsers[i].employee_number%>">Create Request</a></td>
+        </tr>
+    <% } %>
+
+</table>
 
 
 
     <%- include('partials/jsPartials') %>
-    
 
-<script>
-
-
-
-
-    $('#showEmployees').one('click', function() {
-            $.ajax('/api/allemployees', 
-        {
-            dataType: 'json', // type of response data
-            timeout: 500,     // timeout milliseconds
-            success: function (data,status,xhr) {   // success callback function
-                // $('p').append(data.firstName + ' ' + data.middleName + ' ' + data.lastName);
-                let trHTML = '';
-                $.each(data.res.rows, function(i, item) {
-                    trHTML += '<tr><td>' + item.employee_number + '</td><td>' + item.first_name + ' ' + item.last_name + '</td><td>'
-                    + item.job_title + '</td><td>' + item.email + '</td><td>' + `<a href='/users/profile/${item.employee_number}' class="editProfile" name='${item.employee_number}'>Edit</a>
-                         
-                        <form action="/api/deleteuser/${item.employee_number}" method='post'><button class="deleteProfile"name='${item.employee_number}'>Delete</button> </form>` 
-                            + '</td>'
-                });
-                $('#records_table').append(trHTML)
-                },
-            error: function (jqXhr, textStatus, errorMessage) { // error callback 
-                console.log(errorMessage)
-            }
-        });
-    });
-
-    
-</script>
 </body>
 </html>

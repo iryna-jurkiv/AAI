@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {client} = require('../db/db_config');
+// const {client} = require('../db/db_config');
 const queries = require('../db/knexQueries');
 
 
@@ -39,9 +39,9 @@ router.get('/addemployee', async (req, res) => {
 
 
 // NO Changes - TO DELETE
-router.get('/signup', (req, res) => {
-    res.render('users/signup');
-});
+// router.get('/signup', (req, res) => {
+//     res.render('users/signup');
+// });
 
 // No changes needed
 router.get('/signin', (req, res) => {
@@ -77,17 +77,16 @@ router.get('/profile',async (req, res) => {
             .then(data => {
                 return data
             })
-        console.log(foundUser)
         if(req.cookies.email) {
             res.render('users/profile',{
-                foundUser
+                foundUser: foundUser[0]
             })
         } else {
             res.render('users/signin', {message: 'You are not logged in'})
         }
     });
 
-// Complete (Do we want to change this to user ID rather then first name? 
+// Complete (Do we want to change this to user ID rather then first name?
 router.get('/searchResults', async (req, res) => {
     const {firstname} = req.query;
 

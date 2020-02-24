@@ -5,15 +5,14 @@ const queries = require('../db/knexQueries');
 
 
 
-// Completed
+
 router.get('/', (req, res) => {
-    res.render('users/index',{
+    res.render('hr/index',{
         email: req.cookies['email']
        }
     );
 });
 
-// Completed
 router.get('/allemployees', async(req, res) => {
     let allUsers = await queries.users
         .getAll()
@@ -24,11 +23,9 @@ router.get('/allemployees', async(req, res) => {
             console.log(err)
         })
 
-    res.render('users/employeelist', {message: 'You are not currently signed in', allUsers});
+    res.render('hr/employeelist', {message: 'You are not currently signed in', allUsers});
 });
 
-
-// TODO
 router.get('/addemployee', async (req, res) => {
     // Create search for manager function here
 
@@ -40,63 +37,78 @@ router.get('/addemployee', async (req, res) => {
         .catch(err => {
             console.log(err)
         })
-    console.log(foundManagers)
-        res.render('users/addemployee', {foundManagers});
+        res.render('hr/addemployee', {foundManagers});
 });
 
-// Done
-router.get('/profile/:id', async(req, res) => {
+router.get('/requests/:id', async(req, res) => {
     let userID = parseInt(req.params.id)
-
     let foundUser = await queries.users
-        .getOneByEmployeeNumber(userID)
+        .getOneByEmployeeID(userID)
         .then(data => {
             return data
         })
         .catch(err => {
             console.log(err)
         })
-    // const foundUser = await client.query(`SELECT * FROM employees WHERE employee_number = '${userID}'`);
-    res.render('users/editprofile', {
+
+    res.render('hr/newRequest', {foundUser})
+})
+
+router.get('/profile/:id', async(req, res) => {
+    let userID = parseInt(req.params.id)
+
+    let foundUser = await queries.users
+        .getOneByEmployeeID(userID)
+        .then(data => {
+            return data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    // const foundUser = await client.query(`SELECT * FROM manager WHERE employee_number = '${userID}'`);
+    res.render('hr/editprofile', {
         foundUser: foundUser
     })
 })
 
-
-// Done BUT cookies not working yet
 router.get('/profile',async (req, res) => {
+       let userID = parseInt(req.cookies.user_id)
         const foundUser = await queries.users
-            .getOneByEmail(req.cookies['email'])
+            .getOneByUserID(userID)
             .then(data => {
                 return data
             })
+    console.log(foundUser)
         if(req.cookies.email) {
-            res.render('users/profile',{
-                foundUser: foundUser[0]
+            res.render('hr/profile',{
+                foundUser: foundUser
             })
         } else {
-            res.render('users/signin', {message: 'You are not logged in'})
+            res.render('hr/signin', {message: 'You are not logged in', foundUser: foundUser})
         }
     });
 
+// View hr requests
 router.get('/requests/:id', (req, res) => {
 
 })
 
 // Complete (Do we want to change this to user ID rather then first name?
 router.get('/searchResults', async (req, res) => {
-    const {firstname} = req.query;
-
+    const {user_id} = req.query;
+    let userID = parseInt(req.query.user_id)
+    console.log(userID)
     const foundUser = await queries.users
-        .getOneByName(firstname)
+        .getOne(userID)
         .then(data => {
             return data
         })
         .catch(err => {
             console.log(err)
         })
+    console.log(foundUser)
     if (foundUser) {
-        res.render('users/searchResults',{foundUsers: foundUser} )
+        res.render('hr/searchResults',{foundUser: foundUser} )
     } else {
         res.json ({
             message: 'No user found. Please try again'

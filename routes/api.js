@@ -24,7 +24,19 @@ router.get('/allemployees', async (req, res) => {
 
 // Mostly Done, need to do let Managers
 router.post('/addemployee', async (req, res) => {
-    console.log(req.body)
+    let managerID = parseInt(req.body.manager)
+
+    let manager = await queries.users
+        .getManager(managerID)
+        .then(data => {
+            return data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+    console.log(manager.email)
+
     if(req.body.password) {
         req.body.password = await bcrypt.hash(req.body.password, SALT)
     }
@@ -38,7 +50,6 @@ router.post('/addemployee', async (req, res) => {
             console.log(err)
         })
 
-    console.log(addedEmployee)
 
     // let transporter = nodemailer.createTransport({
     //   service: 'gmail',
@@ -100,7 +111,7 @@ router.post('/addemployee', async (req, res) => {
     //     }
     //
     // });
-    res.redirect('/users/addemployee')
+    res.redirect('/hr/addemployee')
 })
 
 router.post('/deleteuser/:id', async (req, res) => {
@@ -114,7 +125,24 @@ router.post('/deleteuser/:id', async (req, res) => {
         .catch(err => {
             console.log(err)
         })
-    res.redirect('/users/allemployees')
+    res.redirect('/hr/allemployees')
+})
+
+
+// This is the request POST page
+router.post('/newrequest/:id', async (req, res) => {
+    let userID = parseInt(req.params.id)
+
+    await queries.requests
+        .createOne(req.body)
+        .then(data => {
+            return data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+    res.redirect('/hr/allemployees')
 })
 
 router.post('/updateemployee', async(req, res) => {
@@ -127,47 +155,32 @@ router.post('/updateemployee', async(req, res) => {
     await queries.users
         .update(userID, req.body)
         .then((data) => {
-            console.log(data)
+            return data
         })
         .catch(err => {
             console.log(err)
         })
-        res.redirect('/users/allemployees');
+        res.redirect('/hr/allemployees');
 
 })
 
-// No longer required
-
-// router.post('/signup',async (req, res) => {
-//   console.log(req.body.fullname)
-// const {fullname, email, password, access } = req.body;
-//     try{
-//         let hashedPassword = await bcrypt.hash(password, SALT)
-//   await client.query(`INSERT INTO users (fullname, password, email, access) VALUES ('${fullname}','${hashedPassword}','${email}','${access}')`);
-//         res.redirect('/users/signin')
-//     }catch(err){
-//         res.json({
-//             message: 'Error',
-//             err
-//         })
-//     }
-// });
-
 // Done but needs testing as Bcrypt
 router.post('/signin',async (req, res) => {
-    const {email, password } = req.body;
 
-    // const foundUser = await client.query(`SELECT * FROM users WHERE email = '${email}'`);
+    // const foundUser = await client.query(`SELECT * FROM hr WHERE email = '${email}'`);
     const foundUser = await queries.users
-        .getOneByEmail(email)
+        .getOneByEmail(req.body.email)
         .then(data => {
             return data;
         })
         .catch(err => {
             console.log(err)
         })
+    if (foundUser.length === 0) {
+        return res.redirect('/')
+    }
 
-    const compare =  await bcrypt.compare(password, foundUser[0].password)
+    const compare =  await bcrypt.compare(req.body.password, foundUser[0].password)
         .then(data => {
             return data
         })
@@ -178,13 +191,20 @@ router.post('/signin',async (req, res) => {
         res.cookie('user_id', `${foundUser[0].user_id}`);
         res.cookie('email', `${foundUser[0].email}`);
         res.cookie('access', `${foundUser[0].access_level}`);
-        res.redirect('/users')
+        if(foundUser[0].access_level === 0) {
+            res.redirect('/hr')
+        } else if(foundUser[0].access_level === 1) {
+            res.redirect('/manager')
+        } else if(foundUser[0].access_level === 2) {
+            res.redirect('/staff')
+        }
     } else {
         res.json ({
             message: 'Incorrect Password',
             url:'http://localhost:3000/users/signin'
          })
-        }
+    }
+
 });
 
 router.post('/signout', async (req, res) => {

@@ -16,11 +16,11 @@
 
 
 <ul class= "results" >
-<% foundUsers.forEach(function(user){ %>
+
     <li>
-    <p><%= user.first_name %> <%= user.last_name %> <%= user.employee_number %></p>
+    <p><%= foundUser.first_name %> <%= foundUser.last_name %> <%= foundUser.employee_number %></p>
      </li>
-    <% }); %>
+
 </ul>
 
 <%- include('partials/jsPartials') %>

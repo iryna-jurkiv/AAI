@@ -7,11 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script async>(function(w, d) { w.CollectId = "5e52d74bc7a22b54f16318fa"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
-
+    <%- include('partials/cssPartials') %>
 </head>
 <body>
+<%- include('partials/nav') %>
 
 <h1>This is the staff view</h1>
+
+<form action="/api/signout" method="post">
+    <button type="submit"> Logout </button>
+</form>
+
+<%- include('partials/jsPartials') %>
 
 </body>
 </html>

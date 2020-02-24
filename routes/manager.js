@@ -3,33 +3,44 @@ const router = express.Router();
 const queries = require('../db/knexQueries');
 
 router.get('/', (req, res) => {
-    res.render('manager/index',{
-        employeefirstname: req.cookies['employeefirstname']
-       });
+    if(req.cookies.access == 0 || req.cookies.access == 2) {
+        res.redirect('/')
+    } else {
+        res.render('manager/index', {
+            employeefirstname: req.cookies['employeefirstname']
+        });
+    }
 });
 
 router.get('/employeesprofile',async (req, res) => {
-
-    const foundEmployee = await queries.users
-        .getOne(req.cookies.user_id)
-        .then(data => {
-            return data
-        })
-        .catch(err => {
-            console.log(err)
-        })
-
-    if(foundEmployee) {
-        res.render('manager/employeesprofile',{
-            foundEmployee
-        })
+    if(req.cookies.access == 0 || req.cookies.access == 2) {
+        res.redirect('/')
     } else {
-        res.render('manager/employeessignin', {})
+        const foundEmployee = await queries.users
+            .getOne(req.cookies.user_id)
+            .then(data => {
+                return data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        if (foundEmployee) {
+            res.render('manager/employeesprofile', {
+                foundEmployee
+            })
+        } else {
+            res.render('manager/employeessignin', {})
+        }
     }
 });
 
 router.get('/video', (req, res) => {
-    res.render('manager/video');
+    if(req.cookies.access == 0 || req.cookies.access == 1) {
+        res.redirect('/')
+    } else {
+        res.render('manager/video');
+    }
 });
 
 

@@ -22,7 +22,6 @@ router.get('/allemployees', async (req, res) => {
     })
 })
 
-// Mostly Done, need to do let Managers
 router.post('/addemployee', async (req, res) => {
     let managerID = parseInt(req.body.manager)
 
@@ -128,8 +127,6 @@ router.post('/deleteuser/:id', async (req, res) => {
     res.redirect('/hr/allemployees')
 })
 
-
-// This is the request POST page
 router.post('/newrequest/:id', async (req, res) => {
     let userID = parseInt(req.params.id)
 
@@ -164,10 +161,8 @@ router.post('/updateemployee', async(req, res) => {
 
 })
 
-// Done but needs testing as Bcrypt
 router.post('/signin',async (req, res) => {
 
-    // const foundUser = await client.query(`SELECT * FROM hr WHERE email = '${email}'`);
     const foundUser = await queries.users
         .getOneByEmail(req.body.email)
         .then(data => {

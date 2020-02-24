@@ -1,10 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const {client} = require('../db/db_config');
 const queries = require('../db/knexQueries');
-
-
-
 
 router.get('/', (req, res) => {
     res.render('hr/index',{
@@ -27,7 +23,6 @@ router.get('/allemployees', async(req, res) => {
 });
 
 router.get('/addemployee', async (req, res) => {
-    // Create search for manager function here
 
     const foundManagers = await queries.users
         .getByAccessLevel(1)
@@ -40,6 +35,7 @@ router.get('/addemployee', async (req, res) => {
         res.render('hr/addemployee', {foundManagers});
 });
 
+// List requests by ID
 router.get('/requests/:id', async(req, res) => {
     let userID = parseInt(req.params.id)
     let foundUser = await queries.users
@@ -65,7 +61,6 @@ router.get('/profile/:id', async(req, res) => {
         .catch(err => {
             console.log(err)
         })
-    // const foundUser = await client.query(`SELECT * FROM manager WHERE employee_number = '${userID}'`);
     res.render('hr/editprofile', {
         foundUser: foundUser
     })
@@ -88,12 +83,6 @@ router.get('/profile',async (req, res) => {
         }
     });
 
-// View hr requests
-router.get('/requests/:id', (req, res) => {
-
-})
-
-// Complete (Do we want to change this to user ID rather then first name?
 router.get('/searchResults', async (req, res) => {
     const {user_id} = req.query;
     let userID = parseInt(req.query.user_id)

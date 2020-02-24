@@ -38,5 +38,9 @@ router.get('/employeesprofile',async (req, res) => {
         }
     });
 
+    router.get('/video', (req, res) => {
+        res.render('employees/video');
+    });
+
 
 module.exports = router;

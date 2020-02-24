@@ -15,15 +15,15 @@ describe('Add Employee', function() {
    cy.get('#sign-in-form').submit();
 
     cy.visit('/users/addemployee');
-    cy.get('#add-employee').find('[id="firstname"]').type('Anna');
-    cy.get('#add-employee').find('[id="lastname"]').type('Bloggs');
-    cy.get('#add-employee').find('[id="jobtitle"]').type('Engineer');
-    cy.get('#add-employee').find('[id="startdate"]').type('2020-05-20');
-    cy.get('#add-employee').find('[id="employeenumber"]').type('900');
-    cy.get('#add-employee').find('[id="email"]').type('annabloggs@gmail.com');
-    cy.get('#add-employee').find('[id="manager"]').select('Joe Bloggs');
-    cy.get('#add-employee').submit();
-    cy.get('.addemployee').should('contain', 'Add Employee');
+    cy.get('#contact-form').find('[id="firstname"]').type('Anna');
+    cy.get('#contact-form').find('[id="lastname"]').type('Bloggs');
+    cy.get('#contact-form').find('[id="jobtitle"]').type('Engineer');
+    cy.get('#contact-form').find('[id="startdate"]').type('2020-05-20');
+    cy.get('#contact-form').find('[id="employeenumber"]').type('900');
+    cy.get('#contact-form').find('[id="email"]').type('annabloggs@gmail.com');
+    cy.get('#contact-form').find('[id="manager"]').select('Joe Bloggs');
+    cy.get('#contact-form').submit();
+    cy.get('#contact-form').should('contain', 'Add Employee');
 
   });
 });

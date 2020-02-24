@@ -62,9 +62,9 @@ Iryna:
 - Thursday, 20th February -  Search Bar, Nav Bar & Email Requests sent to Employees to login
 - Friday, 21st February- JQuery & AJAX call updating profile + add start date- DONE , add manager email for users, searching by name or employee id, table for all things needed (all in one table)
 WEEKEND: Bootstrap research
-- Monday, 24th February- departments & managers
+- Monday, 24th February- Front-end pages & Refactoring existing code 
 - Tuesday, 25th February - TBC
-- Wednesday, 26th February - TBC
+- Wednesday, 26th February -  Feature Freeze & deploy to Herouku
 - Thursday, 27th February- TBC
 - Friday, 28th February - Presentations
 
@@ -98,7 +98,10 @@ WEEKEND: Bootstrap research
     * This would prevent accidentally sending out confidential emails to 3rd parties my mistake
 - More to be added
 
-## Database View
+## Final
+-one login page for HR, Managers, Users- TO DO: Aaron
+-profile photo upload (upload in Node JS, where it is stored, putting link in database)- TO DO: Iryna
+-
 
 
 ## Quickstart

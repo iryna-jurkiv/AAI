@@ -61,7 +61,7 @@ router.post('/addemployee', async (req, res) => {
                       '</head><body><div>'+
                       '<p>Dear Manager </p>'+
                       '<p>We are pleased to inform you that you have been assigned a new member of staff. Please visit AAI portal http://localhost:3000/users/signin to set up their profile. </p>' +
-                      '<br>' + 
+                      '<br>' +
                       '<p>Kind Regards, </p>'+
                       '<p>The AAI Team</p>'+
                       '</div></body></html>'
@@ -104,8 +104,8 @@ router.post('/updateemployee', async(req, res) => {
     const {first_name, last_name, job_title, employee_number, email } = req.body;
     userID = parseInt(employee_number)
 
-    await client.query(`UPDATE employees SET first_name = '${first_name}', 
-                        last_name = '${last_name}', job_title = '${job_title}', email = '${email}' 
+    await client.query(`UPDATE employees SET first_name = '${first_name}',
+                        last_name = '${last_name}', job_title = '${job_title}', email = '${email}'
                         WHERE employee_number = '${userID}';`)
 
     res.json({
@@ -116,6 +116,7 @@ router.post('/updateemployee', async(req, res) => {
 
 
 router.post('/signup',async (req, res) => {
+  console.log(req.body.fullname)
 const {fullname, email, password, access } = req.body;
     try{
         let hashedPassword = await bcrypt.hash(password, SALT)

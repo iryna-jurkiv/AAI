@@ -282,12 +282,12 @@ router.post('/signin',async (req, res) => {
         res.cookie('user_id', `${foundUser[0].user_id}`);
         res.cookie('email', `${foundUser[0].email}`);
         res.cookie('access', `${foundUser[0].access_level}`);
-        if(foundUser[0].access_level == 0) {
-            res.redirect('/hr')
+        if(foundUser[0].access_level == 2) {
+            res.redirect('/staff')
         } else if(foundUser[0].access_level == 1) {
             res.redirect('/manager')
-        } else if(foundUser[0].access_level == 2) {
-            res.redirect('/staff')
+        } else if(foundUser[0].access_level == 0) {
+            res.redirect('/hr')
         }
     } else {
         res.json ({

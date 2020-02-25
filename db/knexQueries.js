@@ -22,6 +22,9 @@ module.exports = {
             return knex('users_table').where('first_name', name)
 
         },
+        getOneByDepartment: function(department) {
+          return knex('users_table').where('department', department)
+        },
         create: function(user) {
             return knex('users_table').insert(user).returning('*')
         },

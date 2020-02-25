@@ -27,9 +27,9 @@
         <label for="exampleFormControlSelect1">Access Level <b>(current: <%= foundUser.access_level%>)</b></label>
         <select class="form-control" name="access_level" id="exampleFormControlSelect1">
             <option disabled selected value="">Change Access Rights</option>
-            <option value="0">HR (0)</option>
+            <option value="0">HR (2)</option>
             <option value="1">Manager (1)</option>
-            <option value="2">Staff (2)</option>
+            <option value="2">Staff (0)</option>
         </select>
         <button>Save Profile Changes</button>
     </form>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-
+</div>
 <%- include('partials/jsPartials') %>
 
 </body>

@@ -152,12 +152,34 @@ router.post('/updateemployee', async(req, res) => {
     await queries.users
         .update(userID, req.body)
         .then((data) => {
+            console.log(data)
             return data
         })
         .catch(err => {
             console.log(err)
         })
-        res.redirect('/hr/allemployees');
+            res.redirect('/hr')
+})
+
+router.post('/managerupdate', async(req, res) => {
+    let userID = parseInt(parseInt(req.body.user_id));
+    console.log(userID)
+    console.log(req.body)
+    if(req.body.password) {
+        req.body.password = await bcrypt.hash(req.body.password, SALT)
+    }
+
+    await queries.users
+        .update(userID, req.body)
+        .then(data => {
+            return data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+        res.redirect('/manager')
+
 
 })
 
@@ -186,11 +208,11 @@ router.post('/signin',async (req, res) => {
         res.cookie('user_id', `${foundUser[0].user_id}`);
         res.cookie('email', `${foundUser[0].email}`);
         res.cookie('access', `${foundUser[0].access_level}`);
-        if(foundUser[0].access_level === 0) {
+        if(foundUser[0].access_level == 0) {
             res.redirect('/hr')
-        } else if(foundUser[0].access_level === 1) {
+        } else if(foundUser[0].access_level == 1) {
             res.redirect('/manager')
-        } else if(foundUser[0].access_level === 2) {
+        } else if(foundUser[0].access_level == 2) {
             res.redirect('/staff')
         }
     } else {

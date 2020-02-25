@@ -6,86 +6,17 @@
     <title>Profile Page</title>
     <%- include('partials/cssPartials')%>
 
-    <style>
-        .popup-overlay {
-            /*Hides pop-up when there is no "active" class*/
-            visibility: hidden;
-            position: absolute;
-            background: #ffffff;
-            border: 3px solid #666666;
-            width: 50%;
-            height: 50%;
-            left: 25%;
-        }
 
-        .popup-overlay.active {
-            /*displays pop-up when "active" class is present*/
-            visibility: visible;
-            text-align: center;
-        }
-
-        .popup-content {
-            /*Hides pop-up content when there is no "active" class */
-            visibility: hidden;
-        }
-
-        .popup-content.active {
-            /*Shows pop-up content when "active" class is present */
-            visibility: visible;
-        }
-
-        button {
-            display: inline-block;
-            vertical-align: middle;
-            border-radius: 30px;
-            margin: .20rem;
-            font-size: 1rem;
-            color: #666666;
-            background: #ffffff;
-            border: 1px solid #666666;
-        }
-
-        button:hover {
-            border: 1px solid #666666;
-            background: #666666;
-            color: #ffffff;
-        }
-    </style>
 </head>
 <body>
 <%- include('partials/nav')%>
-
-<div class="container">
-    <div class="user main-card">
-        <div class="card-group">
-            <div class="card">
-                <!--                <img src="..." class="card-img-top" alt="...">-->
-                <div class="card-body">
-                    <h2 class="card-title"><%= foundUser.first_name %> <%= foundUser.last_name %> </h2>
-                    <p class="card-text">Job Title: <%= foundUser.job_title%></p>
-                    <p class="card-text">Employee Number: : <%= foundUser.employee_number%></p>
-                    <p class="card-text">Employee Email: : <%= foundUser.email%></p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">created: <%= foundUser.created_on %></small><br>
-                    <button id="editBtn">Edit</button>
-                    <form action="/deleteuser/<%= foundUser.user_id %>" method="post">
-                        <button>Delete</button>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="user popup-overlay">
     <div class="card-group popup-content">
         <div class="card">
             <!--                <img src="..." class="card-img-top" alt="...">-->
             <div class="card-body">
-                <form action="/api/updateemployee" method="post">
-                    <input type="hidden" name="employee_number" value="<%= foundUser.user_id%>">
+                <form action="/staff/updateemployee" method="post">
+                    <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
                     First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>" disabled>
                     Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>" disabled>
                     Job Title: <input class="form-control" type="text" name="job_title" value="<%= foundUser.job_title %>" disabled>
@@ -105,19 +36,6 @@
 
     <%- include('partials/jsPartials')%>
 
-    <script>
-
-        $("#editBtn").on("click", function(){
-            $(".popup, .popup-content").addClass("active");
-            $(".main-card").hide();
-        });
-
-        $(".close, .popup").on("click", function(){
-            $(".popup, .popup-content").removeClass("active");
-            $(".main-card").show();
-        });
-
-    </script>
 
 </div>
 </body>

@@ -3,22 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile Page</title>
+    <%- include('partials/cssPartials')%>
+
+    <style>
+        .popup-overlay {
+            /*Hides pop-up when there is no "active" class*/
+            visibility: hidden;
+            position: absolute;
+            background: #ffffff;
+            border: 3px solid #666666;
+            width: 50%;
+            height: 50%;
+            left: 25%;
+        }
+
+        .popup-overlay.active {
+            /*displays pop-up when "active" class is present*/
+            visibility: visible;
+            text-align: center;
+        }
+
+        .popup-content {
+            /*Hides pop-up content when there is no "active" class */
+            visibility: hidden;
+        }
+
+        .popup-content.active {
+            /*Shows pop-up content when "active" class is present */
+            visibility: visible;
+        }
+
+        button {
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 30px;
+            margin: .20rem;
+            font-size: 1rem;
+            color: #666666;
+            background: #ffffff;
+            border: 1px solid #666666;
+        }
+
+        button:hover {
+            border: 1px solid #666666;
+            background: #666666;
+            color: #ffffff;
+        }
+    </style>
 </head>
-<%- include('partials/cssPartials') %>
-
 <body>
-<%- include('partials/nav') %>
+<%- include('partials/nav')%>
 
-<h1> <%= firstname%>'s profile</h1>
-<p> Your First Name : <%= firstname%> </p>
-<p> Your Last Name : <%= lastname%> </p>
-<p> Your Job Title : <%= job_title%> </p>
-<p> Your Start Date : <%= start_date%> </p>
-<p> Your Employee Number : <%= employee_number%> </p>
-<p> Your Email Address : <%= email%> </p>
-<p> Your Manager : <%= manager%> </p>
-<%- include('partials/jsPartials') %>
+<div class="container">
+    <div class="user main-card">
+        <div class="card-group">
+            <div class="card">
+                <!--                <img src="..." class="card-img-top" alt="...">-->
+                <div class="card-body">
+                    <h2 class="card-title"><%= foundUser.first_name %> <%= foundUser.last_name %> </h2>
+                    <p class="card-text">Job Title: <%= foundUser.job_title%></p>
+                    <p class="card-text">Employee Number: : <%= foundUser.employee_number%></p>
+                    <p class="card-text">Employee Email: : <%= foundUser.email%></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">created: <%= foundUser.created_on %></small><br>
+                    <button id="editBtn">Edit</button>
+                    <form action="/deleteuser/<%= foundUser.user_id %>" method="post">
+                        <button>Delete</button>
+                    </form>
 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="user popup-overlay">
+    <div class="card-group popup-content">
+        <div class="card">
+            <!--                <img src="..." class="card-img-top" alt="...">-->
+            <div class="card-body">
+                <form action="/api/managerupdate" method="post">
+                    <input type="hidden" name="user_id" value="<%= foundUser.employee_number%>">
+                    First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>">
+                    Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>">
+                    Job Title: <input class="form-control" type="text" name="job_title" value="<%= foundUser.job_title %>">
+                    Employee Number: <input class="form-control" type="text" name="employee_number" value="<%= foundUser.employee_number %>" disabled>
+                    Employee Email: <input class="form-control" type="text" name="email" value="<%= foundUser.email %>">
+                    Reset Password: <input class="form-control" type="password" name="password" placeholder="Change to reset Password">
+                    <label for="exampleFormControlSelect1">Access Level <b>(current: <%= foundUser.access_level%>)</b></label>
+                    <button>Save Profile Changes</button>
+                </form>
+                <div class="card-footer">
+                    <small class="text-muted">created: <%= foundUser.created_on %></small><br>
+                </div>
+                <button class="close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/jsPartials')%>
+
+    <script>
+
+        $("#editBtn").on("click", function(){
+            $(".popup, .popup-content").addClass("active");
+            $(".main-card").hide();
+        });
+
+        $(".close, .popup").on("click", function(){
+            $(".popup, .popup-content").removeClass("active");
+            $(".main-card").show();
+        });
+
+    </script>
+
+</div>
 </body>
 </html>

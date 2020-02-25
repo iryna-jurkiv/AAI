@@ -3,7 +3,7 @@ const router = express.Router();
 const queries = require('../db/knexQueries');
 
 router.get('/', (req, res) => {
-    if(req.cookies.access == 2 || req.cookies.access == 1) {
+    if(req.cookies.access != 0) {
         res.redirect('/')
     } else {
         res.render('hr/index',{
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/allemployees', async(req, res) => {
-    if(req.cookies.access == 2 || req.cookies.access == 1) {
+    if(req.cookies.access != 0) {
         res.redirect('/')
     } else {
         let allUsers = await queries.users
@@ -32,7 +32,7 @@ router.get('/allemployees', async(req, res) => {
 });
 
 router.get('/addemployee', async (req, res) => {
-    if(req.cookies.access == 2 || req.cookies.access == 1) {
+    if(req.cookies.access != 0) {
         res.redirect('/')
     } else {
         const foundManagers = await queries.users
@@ -50,7 +50,7 @@ router.get('/addemployee', async (req, res) => {
 // List requests by ID
 router.get('/requests/:id', async(req, res) => {
     let userID = parseInt(req.params.id)
-    if(req.cookies.access == 2 || req.cookies.access == 1) {
+    if(req.cookies.access != 0) {
         res.redirect('/')
     } else {
         let foundUser = await queries.users
@@ -69,7 +69,7 @@ router.get('/requests/:id', async(req, res) => {
 router.get('/profile/:id', async(req, res) => {
     let userID = parseInt(req.params.id)
 
-    if(req.cookies.access == 2 || req.cookies.access == 1) {
+    if(req.cookies.access != 0) {
         res.redirect('/')
     } else {
         let foundUser = await queries.users
@@ -88,7 +88,7 @@ router.get('/profile/:id', async(req, res) => {
 
 router.get('/profile',async (req, res) => {
     let userID = parseInt(req.cookies.user_id)
-    if(req.cookies.access == 2 || req.cookies.access == 1) {
+    if(req.cookies.access != 0) {
         res.redirect('/')
     } else {
         const foundUser = await queries.users
@@ -113,7 +113,7 @@ router.get('/searchResults', async (req, res) => {
     let userID = parseInt(req.query.user_id)
     console.log(userID)
     const foundUser = await queries.users
-        .getOne(userID)
+        .getOneByEmployeeID(userID)
         .then(data => {
             return data
         })

@@ -3,17 +3,12 @@
   "version": "1.0.0",
   "description": "Final engineering project for Makers Academy Apprenticeship Bootcamp",
   "main": "app.js",
-  "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules"
-    ]
-  },
   "scripts": {
     "start": "nodemon server.js",
     "lint": "eslint .",
-    "test": "set NODE_ENV =test && jest && npm run cypress:open",
-    "cypress:open": "cypress open"
+    "test": "npm run lint && npm run test:unit && npm run test:integration",
+    "test:unit": "jest",
+    "test:integration": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -30,14 +25,16 @@
     "cookie-parser": "^1.4.4",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "nodemailer": "^6.4.2",
-    "pg": "^7.18.1"
+    "knex": "^0.20.10",
+    "nodemailer": "^6.4.3",
+    "pg": "^7.18.1",
+    "rbac": "^5.0.3",
+    "rbacjs": "^2.0.1"
   },
   "devDependencies": {
     "cypress": "^4.0.2",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
-    "jest": "^25.1.0",
-    "supertest": "^4.0.2"
+    "jest": "^25.1.0"
   }
 }

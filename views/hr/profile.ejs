@@ -84,7 +84,7 @@
         <div class="card">
             <!--                <img src="..." class="card-img-top" alt="...">-->
             <div class="card-body">
-                <form action="/profile/<%=foundUser.user_id%>" method="post">
+                <form action="/api/updateemployee" method="post">
                     <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
                     First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>">
                     Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>">

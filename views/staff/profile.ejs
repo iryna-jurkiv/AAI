@@ -10,48 +10,67 @@
 </head>
 <body>
 <%- include('partials/nav')%>
-<div class="user popup-overlay">
-    <div class="card-group popup-content">
-        <div class="card">
-            <!--                <img src="..." class="card-img-top" alt="...">-->
-            <div class="card-body">
-                <form action="/staff/updateemployee" method="post">
-                    <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
-                    First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>" disabled>
-                    Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>" disabled>
-                    Job Title: <input class="form-control" type="text" name="job_title" value="<%= foundUser.job_title %>" disabled>
-                    Employee Number: <input class="form-control" type="text" name="employee_number" value="<%= foundUser.employee_number %>" disabled>
-                    Employee Email: <input class="form-control" type="text" name="email" value="<%= foundUser.email %>">
-                    Reset Password: <input class="form-control" type="password" name="password" placeholder="Change to reset Password">
-                    <label for="exampleFormControlSelect1">Access Level <b>(current: <%= foundUser.access_level%>)</b></label>
-                    <button>Save Profile Changes</button>
-                </form>
-                <div class="card-footer">
-                    <small class="text-muted">created: <%= foundUser.created_on %></small><br>
-                </div>
-                <button class="close">Close</button>
-            </div>
 
-            <%= typeof msg != 'undefined' ? msg : '' %>
-            <form action="/api/upload" method="POST" enctype="multipart/form-data">
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h4>Password Reset</h4>
+            <form action="/staff/updateemployee" method="post">
                 <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
-
-                <div class="file-field input-field">
-                    <div class="btn grey">
-                        <span>File</span>
-                        <input name="myImage" type="file">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
-                    </div>
-                </div>
-                <button type="submit" class="btn">Submit</button>
+                First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>" disabled>
+                Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>" disabled>
+                Job Title: <input class="form-control" type="text" name="job_title" value="<%= foundUser.job_title %>" disabled>
+                Employee Number: <input class="form-control" type="text" name="employee_number" value="<%= foundUser.employee_number %>" disabled>
+                Employee Email: <input class="form-control" type="text" name="email" value="<%= foundUser.email %>" disabled>
+                Reset Password: <input class="form-control" type="password" name="password" placeholder="Change to reset Password">
+                <label for="exampleFormControlSelect1">Access Level <br>(current: <%= foundUser.access_level%>)<br></label><br>
+                <button class="btn btn-primary">Reset Password</button>
             </form>
-            <br>
-            <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
         </div>
+        <div class="col-6">
+            <h4>Update your personal information</h4>
+            <% if (personalInfo) { %>
+            <form action="/staff/updatepersonaldetails" method="post">
+                <%} else { %>
+                <form action="/staff/createpersonaldetails" method="post">
+                    <%} %>
+                <input type="hidden" name="employee_number" value="<%= foundUser.user_id%>">
+                Account Number <input class="form-control" type="text" name="account_number" value="<% if (personalInfo) { %><%= personalInfo.account_number %> <%}%>" >
+                Sort Code: <input class="form-control" type="text" name="sort_code" value="<% if (personalInfo) { %><%= personalInfo.sort_code  %><%}%>" >
+                Address 1: <input class="form-control" type="text" name="addr_first" value="<% if (personalInfo) { %><%= personalInfo.addr_first  %><%}%>" >
+                Address 2: <input class="form-control" type="text" name="addr_second" value="<% if (personalInfo) { %><%= personalInfo.addr_second  %><%}%>" >
+                City: <input class="form-control" type="text" name="city" value="<% if (personalInfo) { %><%= personalInfo.city  %><%}%>" >
+                Post Code: <input class="form-control" type="text" name="post_code" value="<% if (personalInfo) { %><%=personalInfo.post_code  %><%}%>" >
+                Permitted to work in UK? <input class="form-control" type="checkbox" name="entitled_uk" value="true"<% if (personalInfo) { %> <% if (personalInfo.entitled_uk) { %> checked <%}%>  <%}%>>
+
+                    <button class="btn btn-primary">Save Profile Changes</button>
+            </form>
         </div>
     </div>
+</div>
+
+
+
+
+    <%= typeof msg != 'undefined' ? msg : '' %>
+    <form action="/api/upload" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
+
+        <div class="file-field input-field">
+            <div class="btn grey">
+                <span>File</span>
+                <input name="myImage" type="file">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
+
+</div>
 
 <img src="<%= foundUser.image%>" alt="">
 

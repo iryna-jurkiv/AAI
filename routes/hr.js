@@ -132,7 +132,6 @@ router.get('/searchResults', async (req, res) => {
         .catch(err => {
             console.log(err)
         })
-    console.log(foundUser)
     if (foundUser) {
         res.render('hr/searchResults',{foundUser: foundUser, userID} )
     } else {

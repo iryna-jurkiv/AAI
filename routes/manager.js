@@ -3,16 +3,20 @@ const router = express.Router();
 const queries = require('../db/knexQueries');
 
 router.get('/', (req, res) => {
+    const userID = parseInt(req.cookies.user_id);
+
     if(req.cookies.access != 1) {
         res.redirect('/')
     } else {
         res.render('manager/index', {
-            employeefirstname: req.cookies['employeefirstname']
+            employeefirstname: req.cookies['employeefirstname'], userID
         });
     }
 });
 
 router.get('/allemployees', async(req, res) => {
+    const userID = parseInt(req.cookies.user_id);
+
     if(req.cookies.access != 1) {
         res.redirect('/')
     } else {
@@ -26,12 +30,14 @@ router.get('/allemployees', async(req, res) => {
             })
         res.render('manager/manageremployees', {
             employeefirstname: req.cookies['employeefirstname'],
-            allUsers
+            allUsers, userID
         });
     }
 });
 
-router.get('/employeesprofile',async (req, res) => {
+router.get('/employeesprofile/:id',async (req, res) => {
+    const userID = parseInt(req.cookies.user_id);
+
     if(req.cookies.access != 1) {
         res.redirect('/')
     } else {
@@ -46,7 +52,7 @@ router.get('/employeesprofile',async (req, res) => {
 
         if (foundUser) {
             res.render('manager/employeesprofile', {
-                foundUser
+                foundUser, userID
             })
         } else {
             res.render('manager/employeessignin', {})
@@ -58,7 +64,7 @@ router.get('/video', (req, res) => {
     if(req.cookies.access != 1) {
         res.redirect('/')
     } else {
-        res.render('manager/video');
+        res.render('manager/video', {userID});
     }
 });
 

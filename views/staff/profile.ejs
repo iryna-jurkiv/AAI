@@ -16,7 +16,7 @@
             <!--                <img src="..." class="card-img-top" alt="...">-->
             <div class="card-body">
                 <form action="/staff/updateemployee" method="post">
-                    <input type="hidden" name="employee_number" value="<%= foundUser.user_id%>">
+                    <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
                     First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>" disabled>
                     Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>" disabled>
                     Job Title: <input class="form-control" type="text" name="job_title" value="<%= foundUser.job_title %>" disabled>
@@ -31,8 +31,29 @@
                 </div>
                 <button class="close">Close</button>
             </div>
+
+            <%= typeof msg != 'undefined' ? msg : '' %>
+            <form action="/api/upload" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
+
+                <div class="file-field input-field">
+                    <div class="btn grey">
+                        <span>File</span>
+                        <input name="myImage" type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+            <br>
+            <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
+        </div>
         </div>
     </div>
+
+<img src="<%= foundUser.image%>" alt="">
 
     <%- include('partials/jsPartials')%>
 

@@ -194,14 +194,15 @@ router.post('/newrequest/:id', async (req, res) => {
 
 
 router.post('/updateemployee', async(req, res) => {
-    let userID = parseInt(req.body.employee_number);
+    let userID = parseInt(req.body.user_id);
 
+    console.log(req.body)
     if(req.body.password) {
         req.body.password = await bcrypt.hash(req.body.password, SALT)
     }
 
     await queries.users
-        .update(userID, req.body)
+        .updateByUID(userID, req.body)
         .then((data) => {
             console.log(data)
             return data

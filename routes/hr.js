@@ -68,7 +68,7 @@ router.get('/requests/:id', async(req, res) => {
 
 router.get('/profile/:id', async(req, res) => {
     let userID = parseInt(req.params.id)
-
+    console.log(userID)
     if(req.cookies.access != 0) {
         res.redirect('/')
     } else {

@@ -37,6 +37,9 @@ module.exports = {
         getByAccessLevel: function (access_level) {
             return knex('users_table').where('access_level', access_level)
 
+        },
+        getByManager: function (id) {
+          return knex('users_table').where('user_id',id).first()
         }
     },
     accessLevel: {

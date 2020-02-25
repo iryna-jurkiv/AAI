@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const queries = require('../db/knexQueries');
 const bcrypt = require('bcrypt');
+const salt = 10;
+
 
 router.get('/', async (req, res) => {
     if(req.cookies.access == 0) {

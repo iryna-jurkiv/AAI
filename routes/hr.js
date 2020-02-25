@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const queries = require('../db/knexQueries');
-
+const SALT = 10
 router.get('/', (req, res) => {
     let userID = req.cookies.user_id
     if(req.cookies.access != 0) {

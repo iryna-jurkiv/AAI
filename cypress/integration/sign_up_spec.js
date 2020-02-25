@@ -1,6 +1,6 @@
 describe('Signup', function() {
   it('allows user to register', function() {
-    cy.visit('/users/signup');
+    cy.visit('/hr/signup');
     cy.get('#sign-up-form').find('[id="fullname"]').type('Gemma L');
     cy.get('#sign-up-form').find('[id="email"]').type('gemma@gmail.com');
     cy.get('#sign-up-form').find('[id="password"]').type('password123');

@@ -1,20 +1,20 @@
 describe('Add Employee', function() {
-  it('HR can add employees', function() {
+  it('HR can add manager', function() {
 
-    // cy.visit('/users/signup');
+    // cy.visit('/hr/signup');
     //
     // cy.get('#sign-up-form').find('[id="fullname"]').type('Joke Bloggs');
     // cy.get('#sign-up-form').find('[id="email"]').type('joke@gmail.com');
     // cy.get('#sign-up-form').find('[id="password"]').type('password123');
     // cy.get('#sign-up-form').find('[id="password2"]').type('password123');
     // cy.get('#sign-up-form').submit();
-    cy.visit('/users/signin');
+    cy.visit('/hr/signin');
 
    cy.get('#sign-in-form').find('[id="email"]').type('jon@gmail.com');
    cy.get('#sign-in-form').find('[id="password"]').type('password123');
    cy.get('#sign-in-form').submit();
 
-    cy.visit('/users/addemployee');
+    cy.visit('/hr/addemployee');
     cy.get('#contact-form').find('[id="firstname"]').type('Anna');
     cy.get('#contact-form').find('[id="lastname"]').type('Bloggs');
     cy.get('#contact-form').find('[id="jobtitle"]').type('Engineer');

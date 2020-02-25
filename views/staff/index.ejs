@@ -1,23 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
     <script async>(function(w, d) { w.CollectId = "5e52d74bc7a22b54f16318fa"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
-
+    <%- include('partials/cssPartials') %>
 </head>
-<%- include('partials/cssPartials') %>
-
 <body>
+<%- include('partials/nav') %>
 
-  <%- include('partials/nav') %>
+<h1>This is the staff view</h1>
 
-  <h2>Welcome <%= employeefirstname%></h2>
- <form action="/api/employeessignout" method="post">
-  <button type="submit"> Logout </button>
- </form>
-  <%- include('partials/jsPartials') %>
+<form action="/api/signout" method="post">
+    <button type="submit"> Logout </button>
+</form>
+
+<%- include('partials/jsPartials') %>
 
 </body>
 </html>

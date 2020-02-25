@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee List</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 </head>
 <%- include('partials/cssPartials') %>
 
 <body>
+<%- include('partials/nav') %>
 
-    <%- include('partials/nav') %>
-    <h1>Employee List</h1>
+<h1>This is the Manager staff list</h1>
+
 <table class="table" id="records_table">
 
     <tr>
@@ -23,22 +25,19 @@
     </tr>
     <% for (let i = 0; i < allUsers.length; i++) { %>
 
-    <tr>
+        <tr>
             <td><%= allUsers[i].employee_number%></td>
             <td><%= allUsers[i].first_name %> <%= allUsers[i].last_name %></td>
             <td><%= allUsers[i].department%></td>
             <td><%= allUsers[i].email%></td>
             <td><%= allUsers[i].access_level%></td>
-            <td><a class="btn btn-danger mr-1" href="/users/profile/<%= allUsers[i].employee_number%>/">Edit Profile</a>
-                <a class="btn btn-success" href="/users/requests/<%= allUsers[i].employee_number%>">Create Request</a></td>
+            <td><a class="btn btn-success" href="/hr/requests/<%= allUsers[i].employee_number%>/">Create Request</a></td>
         </tr>
     <% } %>
 
 </table>
 
-
-
-    <%- include('partials/jsPartials') %>
+<%- include('partials/jsPartials') %>
 
 </body>
 </html>

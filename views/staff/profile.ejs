@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <%- include('partials/cssPartials')%>
+
+
+</head>
+<body>
+<%- include('partials/nav')%>
+<div class="user popup-overlay">
+    <div class="card-group popup-content">
+        <div class="card">
+            <!--                <img src="..." class="card-img-top" alt="...">-->
+            <div class="card-body">
+                <form action="/staff/updateemployee" method="post">
+                    <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
+                    First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>" disabled>
+                    Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>" disabled>
+                    Job Title: <input class="form-control" type="text" name="job_title" value="<%= foundUser.job_title %>" disabled>
+                    Employee Number: <input class="form-control" type="text" name="employee_number" value="<%= foundUser.employee_number %>" disabled>
+                    Employee Email: <input class="form-control" type="text" name="email" value="<%= foundUser.email %>">
+                    Reset Password: <input class="form-control" type="password" name="password" placeholder="Change to reset Password">
+                    <label for="exampleFormControlSelect1">Access Level <b>(current: <%= foundUser.access_level%>)</b></label>
+                    <button>Save Profile Changes</button>
+                </form>
+                <div class="card-footer">
+                    <small class="text-muted">created: <%= foundUser.created_on %></small><br>
+                </div>
+                <button class="close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/jsPartials')%>
+
+
+</div>
+</body>
+</html>

@@ -16,21 +16,21 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   // seed with some data
-  await client.query("INSERT INTO users (fullname, password, email, access) VALUES ('Iryna J','123','example@example.com','Manager')");
+  await client.query("INSERT INTO hr (fullname, password, email, access) VALUES ('Iryna J','123','example@example.com','Manager')");
 });
 
 afterEach(async () => {
-  await client.query("DELETE FROM users");
+  await client.query("DELETE FROM hr");
 });
 
 afterAll(async () => {
-  await client.query("DROP TABLE users");
+  await client.query("DROP TABLE hr");
   client.end();
 });
 
-describe("GET /users ", () => {
+describe("GET /hr ", () => {
   test("It should respond with Welcome", async done => {
-    const response = await request(server).get("/users/");
+    const response = await request(server).get("/hr/");
     expect(response.text).toContain('Welcome');
     expect(response.statusCode).toBe(200);
     done()
@@ -38,9 +38,9 @@ describe("GET /users ", () => {
 
 });
 
-describe("GET /users/signup ", () => {
+describe("GET /hr/signup ", () => {
   test("It should include username, password and emails", async done => {
-    const response = await request(server).get("/users/signup");
+    const response = await request(server).get("/hr/signup");
     expect(response.text).toContain('Full name');
     expect(response.text).toContain('Email');
     expect(response.text).toContain('Password');
@@ -50,9 +50,9 @@ describe("GET /users/signup ", () => {
   });
 });
 
-  describe("GET /users/signin ", () => {
+  describe("GET /hr/signin ", () => {
     test("It should include email and password", async done => {
-      const response = await request(server).get("/users/signin");
+      const response = await request(server).get("/hr/signin");
       expect(response.text).toContain('Email');
       expect(response.text).toContain('Password');
       expect(response.statusCode).toBe(200);
@@ -60,7 +60,7 @@ describe("GET /users/signup ", () => {
     });
 });
 
-describe("POST /users/signup ", () => {
+describe("POST /hr/signup ", () => {
   test("It should save a new user user ", async () => {
     const newUser = await request(server)
       .post("/api/signup")
@@ -75,7 +75,7 @@ describe("POST /users/signup ", () => {
   });
 });
 
-describe("POST /users/signin ", () => {
+describe("POST /hr/signin ", () => {
   test("It should authenticate a user ", async () => {
     const newUser = await request(server)
       .post("/api/signup")
@@ -93,7 +93,7 @@ describe("POST /users/signin ", () => {
         password : "123",
         });
     expect(newUser.statusCode).toBe(302);
-    const responsetwo = await request(server).get("/users");
+    const responsetwo = await request(server).get("/hr");
     expect(responsetwo.text).toContain('Welcome');
 
   });

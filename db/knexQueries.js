@@ -1,8 +1,6 @@
 const knex = require('./knex');
 
 
-
-
 module.exports = {
     users: {
         getAll: function() { // Working now
@@ -11,7 +9,10 @@ module.exports = {
         getOne: function(id) {
             return knex('users_table').where('user_id', id).first()
         },
-        getOneByEmployeeNumber: function(id) {
+        getOneByUserID: function(id) {
+            return knex('users_table').where('user_id', id).first()
+        },
+        getOneByEmployeeID: function(id) {
             return knex('users_table').where('employee_number', id).first()
         },
         getOneByEmail: function(email) {
@@ -29,6 +30,11 @@ module.exports = {
                 .where('employee_number', id)
                 .update(user, 'user_id')
         },
+        updateByUID: (id, user) => {
+            return knex('users_table')
+                .where('user_id', id)
+                .update(user, 'user_id')
+        },
         delete: (id) => {
             return knex('users_table')
                 .where('user_id', id)
@@ -38,30 +44,14 @@ module.exports = {
             return knex('users_table').where('access_level', access_level)
 
         },
-        getByManager: function (id) {
-          return knex('users_table').where('user_id',id).first()
+        getManager: function (id) {
+          return knex('users_table').where('user_id', id).first()
+        },
+        getManagerStaffList: function (id) {
+          return knex('users_table').where('manager', id)
         }
-    },
-    accessLevel: {
-        getAll: function () {
-            return knex.from('users')
-                .innerJoin('user_profile', 'users.user_id', 'user_profile.user_id')
-        },
-        getOne: function (id) {
-            return knex.from('users')
-                .innerJoin('user_profile', 'users.user_id', 'user_profile.user_id')
-                .where('users.user_id', id).first()
-        },
-        createOne: function(user) {
-            return knex('user_profile').insert(user).returning('*')
-        },
-        updateOne: (id, user_profile) => {
-            return knex.from('user_profile')
-                .where('user_id', id)
-                .update(user_profile, 'user_id')
-        },
-    },
-    requests: {
+      },
+      requests: {
         getAllUsersRequests: function (id) {
             return knex('user_requests').where('user_id', id)
         },
@@ -76,3 +66,24 @@ module.exports = {
         }
     }
 };
+
+
+// accessLevel: {
+//     getAll: function () {
+//         return knex.from('hr')
+//             .innerJoin('user_profile', 'hr.user_id', 'user_profile.user_id')
+//     },
+//     getOne: function (id) {
+//         return knex.from('hr')
+//             .innerJoin('user_profile', 'hr.user_id', 'user_profile.user_id')
+//             .where('hr.user_id', id).first()
+//     },
+//     createOne: function(user) {
+//         return knex('user_profile').insert(user).returning('*')
+//     },
+//     updateOne: (id, user_profile) => {
+//         return knex.from('user_profile')
+//             .where('user_id', id)
+//             .update(user_profile, 'user_id')
+//     },
+// },

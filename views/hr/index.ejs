@@ -115,11 +115,11 @@ nav ul a:before {
   left: 18px;
 }
 
-nav ul li:nth-child(2) a:before { content: '\f00a'; }
-nav ul li:nth-child(3) a:before { content: '\f012'; }
-nav ul li:nth-child(4) a:before { content: '\f018'; }
-nav ul li:nth-child(5) a:before { content: '\f024'; }
-nav ul li:nth-child(6) a:before { content: '\f0c3'; }
+nav ul li:nth-child(1) a:before { content: '\f00a'; }
+nav ul li:nth-child(2) a:before { content: '\f012'; }
+nav ul li:nth-child(3) a:before { content: '\f018'; }
+nav ul li:nth-child(4) a:before { content: '\f024'; }
+nav ul li:nth-child(5) a:before { content: '\f0c3'; }
 nav ul li:nth-child(7) a:before { content: '\f09b'; }
 nav ul li:nth-child(8) a:before { content: '\f0fa'; }
 nav ul li:nth-child(10) a:before { content: '\f002'; }
@@ -205,27 +205,7 @@ h2{
 <body>
 <div class="wrapper">
   <nav>
-    <header>
-      <span></span>
-      <%= email%>
-      <a></a>
-    </header>
-
-    <ul>
-      <li><span>Navigation</span></li>
-      <li><a class="active">Dashboard</a></li>
-      <li><a>Statistics</a></li>
-      <li><a>Roadmap</a></li>
-      <li><a>Milestones</a></li>
-      <li><a>Tickets</a></li>
-      <li><a>GitHub</a></li>
-      <li><a>FAQ</a></li>
-      <li><span>Other</span></li>
-      <li><a>Search</a></li>
-      <li><a>Settings</a></li>
-      <li><a>Logout</a></li>
-    </ul>
-    
+      <%- include('partials/nav') %>
   </nav>
 
   <main>

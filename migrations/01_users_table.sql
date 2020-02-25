@@ -9,6 +9,7 @@ CREATE TABLE users_table(
    department VARCHAR (200),
    access_level INTEGER,
    password VARCHAR(256),
-   FOREIGN KEY (manager) references users_table(employee_number),
-   created_on TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+   FOREIGN KEY (manager) references users_table(user_id),
+   created_on TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+   image varchar(255)
 );

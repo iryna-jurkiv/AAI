@@ -40,7 +40,7 @@ router.get('/addemployee', async (req, res) => {
         .catch(err => {
             console.log(err)
         })
-    console.log(foundManagers)
+    // console.log(foundManagers)
         res.render('users/addemployee', {foundManagers});
 });
 

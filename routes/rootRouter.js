@@ -13,4 +13,7 @@ router.get('/', (req, res) => {
     }
 });
 
+router.get('/layouts', (req, res) => {
+    res.render('layout')
+})
 module.exports = router;

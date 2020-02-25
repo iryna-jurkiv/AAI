@@ -95,29 +95,29 @@ router.get('/profile/:id', async(req, res) => {
     }
 })
 
-router.get('/profile',async (req, res) => {
-    let userID = req.cookies.user_id
-
-    let sqlUserID = parseInt(req.cookies.user_id)
-    if(req.cookies.access != 0) {
-        res.redirect('/')
-    } else {
-        const foundUser = await queries.users
-            .getOneByUserID(sqlUserID)
-            .then(data => {
-                return data
-            })
-
-        if(req.cookies.email) {
-            res.render('hr/profile',{
-                foundUser: foundUser
-            })
-        } else {
-            res.render('hr/signin', {message: 'You are not logged in', foundUser: foundUser, userID})
-        }
-    }
-
-    });
+// router.get('/profile',async (req, res) => {
+//     let userID = req.cookies.user_id
+//
+//     let sqlUserID = parseInt(req.cookies.user_id)
+//     if(req.cookies.access != 0) {
+//         res.redirect('/')
+//     } else {
+//         const foundUser = await queries.users
+//             .getOneByUserID(sqlUserID)
+//             .then(data => {
+//                 return data
+//             })
+//
+//         if(req.cookies.email) {
+//             res.render('hr/profile',{
+//                 foundUser: foundUser
+//             })
+//         } else {
+//             res.render('hr/signin', {message: 'You are not logged in', foundUser: foundUser, userID})
+//         }
+//     }
+//
+// });
 
 router.get('/searchResults', async (req, res) => {
     let userID = req.cookies.user_id

@@ -3,13 +3,41 @@ const router = express.Router();
 const queries = require('../db/knexQueries');
 const bcrypt = require('bcrypt');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     if(req.cookies.access == 0) {
         res.redirect('/')
     } else {
         const userID = parseInt(req.cookies.user_id);
+        let foundUser = await queries.users
+            .getOneByUserID(userID)
+            .then(data => {
+                return data
+            })
+            .catch(err => {
+                console.log(err)
+            })
 
-        res.render('staff/index', {userID});
+        let managerID = parseInt(foundUser.manager)
+
+        let foundManager = await queries.users
+                .getManager(managerID)
+                .then(data => {
+                    return data
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+
+        let foundDepartment = await queries.users
+                .getOneByDepartment(foundUser.department)
+                .then(data => {
+                    return data
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            console.log(foundDepartment)
+        res.render('staff/index', {userID, foundUser, foundManager, foundDepartment});
     }
 })
 

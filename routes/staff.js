@@ -58,8 +58,6 @@ router.post('/updateemployee', async(req, res) => {
         req.body.password = await bcrypt.hash(req.body.password, SALT)
     }
 
-    console.log(req.body)
-
     let update = await queries.users
         .updateByUID(req.body.user_id, req.body)
         .then((data) => {
@@ -68,7 +66,7 @@ router.post('/updateemployee', async(req, res) => {
         .catch(err => {
             console.log(err)
         })
-    console.log(update)
+
     res.redirect('/staff')
 })
 module.exports = router;

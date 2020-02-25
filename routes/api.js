@@ -41,21 +41,43 @@ function checkFileType(file, cb){
   }
 }
 router.post('/upload', (req, res) => {
-  upload(req, res, (err) => {
-    if(err){
-      res.render('users/profile', {
+
+    console.log(req.cookies)
+    let userID = parseInt(req.cookies.user_id)
+
+
+    upload (req, res, (err) => {
+        // console.log(req.file)
+
+        let file = {image: `/uploads/${req.file.filename}`}
+
+        if(err){
+      res.render('staff/profile', {
         msg: err
       });
     } else {
       if(req.file == undefined){
-        res.render('users/profile', {
+        res.render('staff/profile', {
           msg: 'Error: No File Selected!'
         });
       } else {
-        res.render('users/profile', {
-          msg: 'File Uploaded!',
-          file: `/uploads/${req.file.filename}`
-        });
+        let insert =  queries.users
+            .updateByUID(userID, file)
+            .then(data => {
+                return data
+            })
+            .catch(error => {
+                console.log(err)
+            })
+          if(req.cookies.access == 2) {
+              res.redirect(`/staff/profile/${parseInt(req.cookies.user_id)}`);
+          }
+            if(req.cookies.access == 1) {
+              res.redirect(`/manager/employeesprofile/${parseInt(req.cookies.user_id)}`);
+          }
+          if(req.cookies.access == 0) {
+              res.redirect(`/hr/profile/${parseInt(req.cookies.user_id)}`);
+          }
       }
     }
   });

@@ -51,7 +51,7 @@ module.exports = {
           return knex('users_table').where('manager', id)
         }
       },
-      requests: {
+    requests: {
         getAllUsersRequests: function (id) {
             return knex('user_requests').where('user_id', id)
         },
@@ -64,6 +64,20 @@ module.exports = {
         delete: function () {
             console.log('Create this function') // To be created
         }
+    },
+    personal: {
+        create: function(user) {
+            return knex('users_details').insert(user).returning('*')
+        },
+        update: (id, user) => {
+            return knex('users_details')
+                .where('employee_number', id)
+                .update(user, 'employee_number')
+        },
+        getPersonalData: (id) => {
+            return knex('users_details').where('employee_number', id).first()
+        }
+
     }
 };
 

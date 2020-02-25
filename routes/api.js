@@ -202,6 +202,15 @@ router.post('/deleteuser/:id', async (req, res) => {
 router.post('/newrequest/:id', async (req, res) => {
     let userID = parseInt(req.params.id)
 
+    let user= await queries.users
+        .getOne(userID)
+        .then(data => {
+            return data
+        })
+        .catch(err => {
+            console.log(err)
+        });
+
     await queries.requests
         .createOne(req.body)
         .then(data => {
@@ -209,7 +218,56 @@ router.post('/newrequest/:id', async (req, res) => {
         })
         .catch(err => {
             console.log(err)
-        })
+        });
+
+    let foundrequests = await queries.requests.getAllUsersRequests(userID)
+    .then(data => {
+      return data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+
+        let transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth:{
+            user:process.env.EMAIL,
+            pass:process.env.PASSWORD
+          }
+        });
+
+
+        let mailOptions = {
+          from: 'aaiteam20@gmail.com',
+          to: 'aaiitteam20@gmail.com',
+          bcc: 'aaiteam20@gmail.com',
+          subject: 'IT Request',
+          html: '<!DOCTYPE html>'+
+                '<html><head><title>IT Request</title>'+
+                '</head><body><div>'+
+                '<p>Dear IT Team </p>'+
+                '<p>The following IT requests have been created for:  </p>'
+                + user.first_name +' '
+                + user.last_name
+                +'<p>Laptop: </p>'+ foundrequests[0].laptop
+                +'<p>Developer Laptop: </p>' + foundrequests[0].developer_laptop
+                +'<p>Monitor: </p>'+foundrequests[0].monitor
+                +'<p>Phone: </p>'+foundrequests[0].phone+
+                '<p>Kind Regards, </p>'+
+                '<p>The AAI Team</p>'+
+                '</div></body></html>'
+              };
+
+        transporter.sendMail(mailOptions,  function(err,data){
+          if (err) {
+            console.log('Error occurs', err);
+          } else {
+            console.log('Email sent to IT Team')
+          }
+
+        });
+
 
     res.redirect('/hr/allemployees')
 })

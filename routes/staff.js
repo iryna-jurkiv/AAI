@@ -36,10 +36,25 @@ router.get('/', async (req, res) => {
                 .catch(err => {
                     console.log(err)
                 })
-            console.log(foundDepartment)
+            // console.log(foundDepartment)
         res.render('staff/index', {userID, foundUser, foundManager, foundDepartment});
     }
 })
+
+
+
+router.get('/:id', async (req, res) => {
+    let userID = parseInt(req.params.id);
+        let foundUser = await queries.users
+            .getOneByUserID(userID)
+            .then(data => {
+                return data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        res.render('staff/other', {userID, foundUser})
+    })
 
 router.get('/profile/:id', async (req, res) => {
     if(req.cookies.access == 0) {
@@ -62,7 +77,7 @@ router.get('/profile/:id', async (req, res) => {
             .catch(err => {
                 console.log(err)
             })
-        console.log(personalInfo)
+        // console.log(personalInfo)
         res.render('staff/profile', {userID, foundUser, personalInfo})
     }
 })
@@ -72,7 +87,7 @@ router.get('/requests', async(req, res) => {
     //     res.redirect('/')
     // } else {
         const userID = parseInt(req.cookies.user_id);
-        console.log(userID)
+        // console.log(userID)
         const requests = await queries.requests
             .getAllUsersRequests(userID)
             .then(data => {
@@ -81,7 +96,7 @@ router.get('/requests', async(req, res) => {
             .catch(err => {
                 console.log(err)
             })
-    console.log(requests)
+    // console.log(requests)
 
         res.render('staff/requests', {requests, userID})
     // }
@@ -90,7 +105,7 @@ router.get('/requests', async(req, res) => {
 router.post('/createpersonaldetails', async(req, res) => {
     req.body.employee_number = parseInt(req.body.employee_number)
 
-    console.log(req.body)
+    // console.log(req.body)
 
     let test = await queries.personal
         .create(req.body)
@@ -110,7 +125,7 @@ router.post('/createpersonaldetails', async(req, res) => {
 router.post('/updatepersonaldetails', async(req, res) => {
     req.body.employee_number = parseInt(req.body.employee_number)
     let userID = req.cookies.user_id
-    console.log(req.body)
+    // console.log(req.body)
 
     let test = await queries.personal
         .update(userID, req.body)

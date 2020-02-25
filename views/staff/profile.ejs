@@ -6,6 +6,14 @@
     <title>Profile Page</title>
     <%- include('partials/cssPartials')%>
 
+<style>
+#picturebox {
+        border: solid 3px black;
+        padding: 5px;
+        margin-top: 40px;
+      }
+</style>
+<script async>(function(w, d) { w.CollectId = "5e52d74bc7a22b54f16318fa"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
 
 </head>
 <body>
@@ -14,21 +22,40 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
+          <br>
             <h4>Password Reset</h4>
+            <br>
             <form action="/staff/updateemployee" method="post">
                 <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
                 First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>" disabled>
                 Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>" disabled>
-                Job Title: <input class="form-control" type="text" name="job_title" value="<%= foundUser.job_title %>" disabled>
                 Employee Number: <input class="form-control" type="text" name="employee_number" value="<%= foundUser.employee_number %>" disabled>
-                Employee Email: <input class="form-control" type="text" name="email" value="<%= foundUser.email %>" disabled>
                 Reset Password: <input class="form-control" type="password" name="password" placeholder="Change to reset Password">
-                <label for="exampleFormControlSelect1">Access Level <br>(current: <%= foundUser.access_level%>)<br></label><br>
+                <!-- <label for="exampleFormControlSelect1">Access Level <br>(current: <%= foundUser.access_level%>)<br></label><br> -->
                 <button class="btn btn-primary">Reset Password</button>
             </form>
+            <br>
+            <form action="/api/upload" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                       aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+        </div>
+            <button style="margin-left:0px;type="submit" class="btn btn-primary mt-2">Submit</button>
+        </form>
+        <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded" alt="Responsive image" height="300">
+<p>Join Date: <%= foundUser.created_on%></p>
         </div>
         <div class="col-6">
+          <br>
             <h4>Update your personal information</h4>
+            <br>
             <% if (personalInfo) { %>
             <form action="/staff/updatepersonaldetails" method="post">
                 <%} else { %>
@@ -52,28 +79,7 @@
 
 
 
-    <%= typeof msg != 'undefined' ? msg : '' %>
-    <form action="/api/upload" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
-
-        <div class="file-field input-field">
-            <div class="btn grey">
-                <span>File</span>
-                <input name="myImage" type="file">
-            </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <br>
-    <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
-
-</div>
-
-<img src="<%= foundUser.image%>" alt="">
-
+</di>
     <%- include('partials/jsPartials')%>
 
 

@@ -1,243 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <%- include('partials/cssPartials')%>
 <style>
-  @import "compass/css3";
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@import url('https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-$color: #404040;
-$color-d: darken(#404040, 5%);
-$color-l: lighten(#404040, 7.5%);
-*, *:before, *:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+#personalinfo{
+  border-style:groove;
 }
-*:before, *:after {
-  content: '';
-  display: block;
-  position: absolute;
+
+#team{
+  border-style:groove;
 }
-html, body {
-  height: 100%;
+
+#video{
+  border-style:groove;
 }
-body {
-  font: 15px/1 'Open Sans', sans-serif;
-  color: #595959;
+
+#random{
+  /* margin-left:500px; */
+  position:relative;
+  left:0px;
 }
-a {
-  cursor: pointer;
+
+.sizer{
+  width: 500px;
+  margin-left:250px;
 }
-ul {
-  list-style: none;
+.navbar{
+  width:100%;
 }
-.wrapper {
-  display: flex;
-  min-height: 100%;
-}
-nav {
-  width: 200px;
-  background: #005CE6;
-  margin-left:0px;
-  /* margin-top:50px; */
-}
-nav header {
-  position: relative;
-  height: 80px;
-  padding: 20px 0 0 15px;
-  font-size: 16px;
-  color: #fff;
-  background: darken(#404040, 5%);
-  /* margin-left: 50px; */
-}
-nav header span {
-  position: relative;
-  display: inline-block;
-  width: 36px;
-  height: 36px;
-  margin: 0 10px 0 0;
-  vertical-align: middle;
-  border: 1px solid #fff;
-}
-nav header span:before {
-  content: '\f007';
-  font: normal 20px fontawesome;
-  top: 7px;
-  left: 9px;
-}
-nav header a:before {
-  content: '\f08b';
-  font: normal 20px fontawesome;
-  top: 28px;
-  right: 15px;
-}
-nav ul span {
-  display: block;
-  padding: 15px;
-  color: rgba(255,255,255,.5);
-  text-transform: uppercase;
-  border-bottom: 1px solid darken(#404040, 5%)
-}
-nav ul a {
-  margin: 0px 0px 0px -20px;
-  position: relative;
-  bottom: -80px;
-  display: block;
-  padding: 15px 15px 17px 50px;
-  color: #fff;
-  border-bottom: 1px solid darken(#404040, 5%)
-}
-  /* margin-top:50px; */
-}
-nav ul a:hover,
-nav ul a.active {
-  background: lighten(#404040, 7.5%);
-}
-nav ul a:before {
-  font: normal 16px fontawesome;
-  top: 15px;
-  left: 18px;
-}
-nav ul li:nth-child(1) a:before { content: '\f00a'; }
-nav ul li:nth-child(2) a:before { content: '\f012'; }
-nav ul li:nth-child(3) a:before { content: '\f018'; }
-nav ul li:nth-child(4) a:before { content: '\f024'; }
-nav ul li:nth-child(5) a:before { content: '\f0c3'; }
-nav ul li:nth-child(7) a:before { content: '\f09b'; }
-nav ul li:nth-child(8) a:before { content: '\f0fa'; }
-nav ul li:nth-child(10) a:before { content: '\f002'; }
-nav ul li:nth-child(11) a:before { content: '\f085'; }
-nav ul li:nth-child(12) a:before { content: '\f08b'; }
-main {
-  flex: 1;
-  padding: 25px;
-  background: #F5F5F5;
-}
-main h1 {
-  height: 80px;
-  margin: -25px -25px 25px -25px;
-  padding: 0 25px;
-  line-height: 76px;
-  font-size: 24px;
-  font-weight: 400;
-  background: #005CE6;
-  color: #FFFFFF;
-  text-align: left;
-}
-h2{
-  background-color: #D9D9D9;
-}
-.flex-grid {
-  display: flex;
-}
-.flex-grid > div {
-  flex: 1;
-  margin: 0 20px 20px 0;
-  padding: 15px;
-  border: 1px solid #ddd;
-  background: #fff;
-}
-.flex-grid > div:last-child {
-  margin-right: 0;
-}
-.flex-grid h2 {
-  margin: -15px -15px 15px -15px;
-  padding: 12px 15px;
-  font-size: 14px;
-  font-weight: 400;
-  border-bottom: 1px solid #ddd;
-}
-.flex-grid li {
-  position: relative;
-  margin: 0 0 10px;
-  margin-left: -62px;
-  padding: 0 0 0 25px;
-}
-.flex-grid li:before {
-  /* content: '\f00c'; */
-  font: normal 16px fontawesome;
-  top: 0;
-  left: 0;
-  color: #999;
-}
-/*
-** Media Queries
-***********************************************************/
-@media (max-width: 1000px) {
-  .flex-grid {
-    flex-direction: column;
-  }
-  .flex-grid > div {
-    margin-right: 0;
-  }
-}
+
 </style>
+
+<script async>(function(w, d) { w.CollectId = "5e52d74bc7a22b54f16318fa"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
+
+</head>
 <body>
-<div class="wrapper">
-  <nav>
-      <%- include('partials/nav') %>
-      <br>
-      <form action="/api/signout" method="post">
-        <button style="margin-left:70px; margin-top:70px"type="submit"> Logout </button>
-       </form>
-  </nav>
-  <main>
-    <h1>Homepage</h1>
-    <div class="flex-grid">
-      <div>
-        <h2>My Profile</h2>
-        <ul>
-          <li>First Name : <%=foundUser.first_name %></li>
-          <li>Last Name : <%= foundUser.last_name %></li>
-          <li>Job Title : <%= foundUser.job_title %></li>
-          <li>Employee Number : <%= foundUser.employee_number %></li>
-          <li>Manager : <%= foundManager.first_name %> <%= foundManager.last_name %></li>
-        </ul>
-      </div>
-      <div>
-        <h2>My Tasks</h2>
-        <ul>
-          <li>no images</li>
-          <li>no extra retina sprites</li>
-        </ul>
-      </div>
-      <div>
-        <h2>My Progress</h2>
-        <ul>
-          <li>no headache :)</li>
-        </ul>
-      </div>
-    </div>
-    <div class="flex-grid">
-      <div>
-        <h2>Welcome Video</h2>
-        <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
-          <iframe style="margin-left:26px" class="embed-responsive-item" width="454" height="300" src="https://www.youtube.com/embed/RGMCcffJmMM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<%- include('partials/nav')%>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+          <br>
+            <h1 > Welcome <%=foundUser.first_name %>!</h1>
+            <br>
+            <div id="personalinfo">
+            <h3 style="background-color: #f2f2f2">  My Profile</h3>
+            <ul>
+              <br>
+              <div id="random">
+                <img style="border-radius: 50%; height:200px;background-attachment:fixed" src="<%= foundManager.image%>" alt="">
+              </div>
+              <br>
+              <p>First Name : <%=foundUser.first_name %></p>
+              <p>Last Name : <%= foundUser.last_name %></p>
+              <p>Job Title : <%= foundUser.job_title %></p>
+              <p>Employee Number : <%= foundUser.employee_number %></p>
+              <p>Manager : <%= foundManager.first_name %> <%= foundManager.last_name %></p>
+            </div>
+            <br>
+            <br>
+            <div id="team">
+            <h3 style="background-color:#f2f2f2">  Meet the team</h3>
+            <ul>
+              <% foundDepartment.forEach(function(department){ %>
+                <p>                   <img style="border-radius: 50%; width:65px; height:60px;" src="<%= department.image%>" alt=""> </li>
+                  <a href='/staff/<%= department.user_id %>'><%= department.first_name %> <%= department.last_name %> </a>
+                  <% }); %>
+                </p>
+           </ul>
         </div>
-      </div>
-      <div>
-        <h2>Meet the team</h2>
-        <ul>
-          <% foundDepartment.forEach(function(department){ %>
-          <li> Full Name:  <%= department.first_name %> <%= department.last_name %> <br> <br> Department: <%= department.department %>
-          <br><br><img style="border-radius: 50%; width: auto; height:60px;" src="<%= department.image%>" alt=""> </li>
-          <% }); %>
-        </li>
-        </ul>
-      </div>
-    </div>
-    <div class="flex-grid">
-      <div>
-        <h2>Welcome Pack</h2>
+        <br>
+        <br>
+        <div id="video">
+          <h3 style="background-color: #f2f2f2">Welcome Video</h3>
+          <div class="sizer">
+            <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-4by3"">
+              <iframe class="embed-responsive-item" width="50%" height="100%" src="https://www.youtube.com/embed/RGMCcffJmMM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div id="welcomepack">
+        <h3 style="background-color: #f2f2f2">  Welcome Pack</h3>
         <iframe src="https://info.lse.ac.uk/Staff/Divisions/Human-Resources/Assets/Documents/LSE-New-Starter-Guide.pdf" width="100%" height="500px">
         </iframe>
-      </div>
     </div>
-  </main>
+    <br>
+
 </div>
 </body>
 </html>

@@ -6,31 +6,61 @@
     <title>Requests Page</title>
     <%- include('partials/cssPartials')%>
 
+<style>
+
+#requests{
+  border-style:groove;
+}
+
+.form-check-inline .form-check-input {
+  margin-left:-20px;
+}
+.form-check-input:disabled~.form-check-label{
+  margin-left:100px;
+}
+
+
+
+</style>
+<script async>(function(w, d) { w.CollectId = "5e52d74bc7a22b54f16318fa"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
+
 </head>
 <body>
 <%- include('partials/nav')%>
 
 <div class="container">
-    <div class="user">
-        <% for (let i = 0; i < requests.length; i++) { %>
+    <div class="row">
+        <div class="col-12">
+          <br>
+            <h1>Requests</h1>
+            <br>
+            <div id="requests">
+            <h3 style="background-color: #f2f2f2;padding:10px"> Requested:  </h3>
+            <br>
+            <ul>
+              <div class="user">
+        <% for (let i = 0 ; i < requests.length; i++) { %>
 
         <div class="col">
 
             <div class="col-sm-6">
                     <div class="container">
-                        <h3>Request ID : <%=requests[i].id %></h3>
+                        <!-- <h3>Request ID : <%=requests[i].id %></h3> -->
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" name="laptop" value="true" type="checkbox" id="inlineCheckbox1" <% if (requests[i].laptop) { %> checked <%}%> disabled>
                                 <label class="form-check-label"  for="inlineCheckbox1">Laptop ordered?</label>
                             </div>
+                            <br><br>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" name="developer_laptop" value="true" type="checkbox" id="inlineCheckbox2" <% if (requests[i].developer_laptop) { %> checked <%}%> disabled>
                                 <label class="form-check-label" for="inlineCheckbox2">Developer laptop ordered?</label>
                             </div>
+                            <br><br>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" name="monitor" value="true" type="checkbox" id="inlineCheckbox3" <% if (requests[i].monitor) { %> checked <%}%> disabled>
                                 <label class="form-check-label" for="inlineCheckbox3">Monitor ordered?</label>
                             </div>
+                            <br><br>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" name="phone" value="true" type="checkbox" id="inlineCheckbox3" <% if (requests[i].phone) { %> checked <%}%> disabled>
                                 <label class="form-check-label" for="inlineCheckbox3">Mobile ordered?</label>

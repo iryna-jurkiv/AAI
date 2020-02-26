@@ -11,9 +11,9 @@
         border: solid 3px black;
         padding: 5px;
         margin-top: 20px;
-        width:320px;
+        /* width:320px; */
         height: 350px;
-        margin-left:100px;
+        margin-left:130px;
     }
 </style>
 <body>
@@ -24,9 +24,9 @@
                 First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>"disabled>
                 Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>"disabled>
                 Job Title: <input class="form-control" type="text" name="job_title" value="<%= foundUser.job_title %>"disabled>
-                Department: <input class="form-control" type="text" name="department" value="<%= foundUser.department %>"disabled>
-                Employee Number: <input class="form-control" type="text" name="employee_number" value="<%= foundUser.employee_number %>"disabled>
+                Employee Number: <input class="form-control" type="number" name="employee_number" value="<%= foundUser.employee_number %>"disabled>
                 Employee Email: <input class="form-control" type="text" name="email" value="<%= foundUser.email %>"disabled>
+                Department: <input class="form-control" type="text" name="department" value="<%= foundUser.department %>"disabled>
 
         </div>
 

@@ -4,6 +4,27 @@ const queries = require('../db/knexQueries');
 const bcrypt = require('bcrypt');
 const salt = 10;
 
+router.get('/requests', async(req, res) => {
+    // if(req.cookies.access == 0) {
+    //     res.redirect('/')
+    // } else {
+    const userID = parseInt(req.cookies.user_id);
+
+        console.log(userID)
+
+        const requests = await queries.requests
+            .getAllUsersRequests(userID)
+            .then(data => {
+                return data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    // console.log(requests)
+
+        res.render('staff/requests', {requests, userID})
+    // }
+})
 
 router.get('/', async (req, res) => {
     if(req.cookies.access == 0) {
@@ -55,6 +76,7 @@ router.get('/:id', async (req, res) => {
             .catch(err => {
                 console.log(err)
             })
+            // console.log(foundUser)
         res.render('staff/other', {userID, foundUser})
     })
 
@@ -84,26 +106,6 @@ router.get('/profile/:id', async (req, res) => {
     }
 })
 
-router.get('/requests', async(req, res) => {
-    // if(req.cookies.access == 0) {
-    //     res.redirect('/')
-    // } else {
-        const userID = parseInt(req.cookies.user_id);
-        // console.log(userID)
-        const requests = await queries.requests
-            .getAllUsersRequests(userID)
-            .then(data => {
-                return data
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    // console.log(requests)
-
-        res.render('staff/requests', {requests, userID})
-    // }
-})
-
 router.post('/createpersonaldetails', async(req, res) => {
     req.body.employee_number = parseInt(req.body.employee_number)
 
@@ -126,7 +128,7 @@ router.post('/createpersonaldetails', async(req, res) => {
 
 router.post('/updatepersonaldetails', async(req, res) => {
     req.body.employee_number = parseInt(req.body.employee_number)
-    let userID = req.cookies.user_id
+    const userID = parseInt(req.cookies.user_id);
     // console.log(req.body)
 
     let test = await queries.personal

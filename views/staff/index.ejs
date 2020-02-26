@@ -39,7 +39,7 @@
 
 </head>
 <body>
-<%- include('partials/nav')%>
+<%- include('partials/nav') %>
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -66,10 +66,10 @@
             <h3 style="background-color:#f2f2f2">  Meet the team</h3>
             <ul>
               <% foundDepartment.forEach(function(department){ %>
-                <p>                   <img style="border-radius: 50%; width:65px; height:60px;" src="<%= department.image%>" alt=""> </li>
-                  <a href='/staff/<%= department.user_id %>'><%= department.first_name %> <%= department.last_name %> </a>
+                  <p>                   <img style="border-radius: 50%; width:65px; height:60px;" src="<%= department.image%>" alt=""> </li>
+                    <a href='/staff/<%= department.user_id %>'><%= department.first_name %> <%= department.last_name %> </a>
+                  </p>
                   <% }); %>
-                </p>
            </ul>
         </div>
         <br>

@@ -51,7 +51,7 @@
             <ul>
               <% foundDepartment.forEach(function(department){ %>
                   <p>                   <img style="border-radius: 50%; width:65px; height:60px;" src="<%= department.image%>" alt=""> </li>
-                    <a href='/staff/<%= department.user_id %>'><%= department.first_name %> <%= department.last_name %> </a>
+                    <a href='/hr/<%= department.user_id %>'><%= department.first_name %> <%= department.last_name %> </a>
                   </p>
                   <% }); %>
            </ul>

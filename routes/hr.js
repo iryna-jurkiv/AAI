@@ -133,6 +133,7 @@ router.get('/searchResults', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     let userID = parseInt(req.params.id);
+
         let foundUser = await queries.users
             .getOneByUserID(userID)
             .then(data => {
@@ -140,8 +141,21 @@ router.get('/:id', async (req, res) => {
             })
             .catch(err => {
                 console.log(err)
-            })
-        res.render('hr/other', {userID, foundUser})
+            });
+
+            console.log(foundUser.employee_number)
+
+            let personalInfo = await queries.personal
+                .getPersonalData(foundUser.employee_number)
+                .then(data => {
+                    return data;
+                })
+                .catch(err => {
+                    console.log(err)
+                });
+
+            console.log(`ERR: ${personalInfo}`);
+        res.render('hr/other', {userID, foundUser, personalInfo})
     })
 
 

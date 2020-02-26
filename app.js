@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
 const app = express();
 require('dotenv').config(); // Sets ENV configs for DB access and other global configs
 const multer = require('multer')

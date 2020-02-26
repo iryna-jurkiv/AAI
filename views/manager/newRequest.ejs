@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users Page</title>
+    <%- include('partials/cssPartials')%>
+</head>
+<body>
+<%- include('partials/nav')%>
+<div class="container">
+    <h1>Request Page Page</h1>
+    <p>Name: <%= foundUser.first_name%> <%= foundUser.last_name%></p>
+    <p>Manager Name (TODO): <%= foundUser.first_name%> <%= foundUser.last_name%></p>
+
+    <form action="/request/newrequest/<%= foundUser.user_id%>/" method="post">
+        <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" name="laptop" value="true" type="checkbox" id="inlineCheckbox1" >
+            <label class="form-check-label"  for="inlineCheckbox1">Does user need a laptop?</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" name="developer_laptop" value="true" type="checkbox" id="inlineCheckbox2" >
+            <label class="form-check-label" for="inlineCheckbox2">Does user need a Developer Laptop?</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" name="monitor" value="true" type="checkbox" id="inlineCheckbox3">
+            <label class="form-check-label" for="inlineCheckbox3">Does user require a monitor?</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" name="phone" value="true" type="checkbox" id="inlineCheckbox3">
+            <label class="form-check-label" for="inlineCheckbox3">Does user require a mobile</label>
+        </div>
+        <button class="btn btn-danger">Submit</button>
+    </form>
+</div>
+<%- include('partials/jsPartials')%>
+</body>
+</html>

@@ -35,7 +35,7 @@
                     <option value="1">Manager (1)</option>
                     <option value="2">Staff (0)</option>
                 </select>
-                <button class="btn btn-primary mt-2">Save Changes</button>
+                <button class="btn btn-primary mt-2">Update User</button>
             </form>
         </div>
 
@@ -51,21 +51,19 @@
                     <div class="custom-file">
                         <input type="file" name="myImage" class="custom-file-input" id="inputGroupFile01"
                                aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        <label class="custom-file-label" for="inputGroupFile01">Upload a photo</label>
                         <input class="file-path validate" type="text">
                     </div>
 
                 </div>
-                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                <button type="submit" class="btn btn-primary mt-2">Upload</button>
 
             </form>
             <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded mt-5" alt="Responsive image" height="300">
             <p>Join Date: <%= foundUser.created_on%></p>
-
         </div>
     </div>
 </div>
-
         <%- include('partials/jsPartials') %>
 
 </body>

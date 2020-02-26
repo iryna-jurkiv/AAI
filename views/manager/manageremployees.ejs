@@ -7,37 +7,33 @@
 
 </head>
 <%- include('partials/cssPartials') %>
-
 <body>
 <%- include('partials/nav') %>
-
-<h1>This is the Manager staff list</h1>
-
-<table class="table" id="records_table">
-
-    <tr>
-        <th scope="col">Employee Number</th>
-        <th scope="col">Full Name</th>
-        <th scope="col">Department</th>
-        <th scope="col">Email Address</th>
-        <th scope="col">Access Level</th>
-        <th scope="col">Options</th>
-    </tr>
-    <% for (let i = 0; i < allUsers.length; i++) { %>
-
+<div class="container">
+    <table class="table mt-5"  id="records_table">
         <tr>
-            <td><%= allUsers[i].employee_number%></td>
-            <td><%= allUsers[i].first_name %> <%= allUsers[i].last_name %></td>
-            <td><%= allUsers[i].department%></td>
-            <td><%= allUsers[i].email%></td>
-            <td><%= allUsers[i].access_level%></td>
-            <td><a class="btn btn-success" href="/hr/requests/<%= allUsers[i].employee_number%>/">Create Request</a></td>
+            <th scope="col">Employee Number</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">Access Level</th>
+            <th scope="col">Options</th>
         </tr>
-    <% } %>
-
-</table>
-
+        <% for (let i = 0; i < allUsers.length; i++) { %>
+            <tr>
+                <td><%= allUsers[i].employee_number%></td>
+                <td><%= allUsers[i].first_name %> <%= allUsers[i].last_name %></td>
+                <td><%= allUsers[i].department%></td>
+                <td><%= allUsers[i].email%></td>
+                <td><%= allUsers[i].access_level%></td>
+                <td>
+                    <a class="btn btn-success" href="/manager/requests/<%= allUsers[i].employee_number%>/">Create Request</a>
+                    <a class="btn btn-danger mr-1" style="width: 150px" href="/manager/staffprofile/<%= allUsers[i].user_id%>/">Edit Profile</a>
+                </td>
+            </tr>
+        <% } %>
+    </table>
+</div>
 <%- include('partials/jsPartials') %>
-
 </body>
 </html>

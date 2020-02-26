@@ -22,15 +22,17 @@
                 Employee Email: <input class="form-control" type="text" name="email" value="<%= foundUser.email %>">
                 Reset Password: <input class="form-control" type="password" name="password" placeholder="Change to reset Password">
                 <label for="exampleFormControlSelect1">Access Level: <%= foundUser.access_level%></label>
-                <div></div>
+                <select class="form-control" name="manager" id="exampleFormControlSelect1">
+                    <% foundManagers.forEach(function(manager){ %>
+                        <option name="manager" value="<%= manager.user_id%>"> <%= manager.first_name %> <%= manager.last_name %></option>
+                    <% }); %>
+                </select>
                 <button class="btn btn-primary mt-2">Reset Password</button>
             </form>
         </div>
-    <%= typeof msg != 'undefined' ? msg : '' %>
-            <div class="col-5 text-center mt-4">
-                <form action="/api/upload" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
-
+        <div class="col-5 text-center mt-4">
+            <form action="/api/upload" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
@@ -42,14 +44,13 @@
                         <input class="file-path validate" type="text">
                     </div>
                 </div>
-                    <button type="submit" class="btn btn-primary mt-2">Upload</button>
-
-                </form>
-                <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded mt-5" alt="Responsive image" height="300">
-                <p>Join Date: <%= foundUser.created_on%></p>
-            </div>
+                <button type="submit" class="btn btn-primary mt-2">Upload</button>
+            </form>
+            <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded mt-5" alt="Responsive image" height="300">
+            <p>Join Date: <%= foundUser.created_on%></p>
+        </div>
     </div>
 </div>
-    <%- include('partials/jsPartials')%>
+<%- include('partials/jsPartials')%>
 </body>
 </html>

@@ -19,13 +19,13 @@
     }
 
   </script>
-<style>
-#picturebox {
-        border: solid 3px black;
-        padding: 5px;
-        margin-top: 40px;
+  <style>
+      #picturebox {
+          border: solid 3px black;
+          padding: 5px;
+          margin-top: 40px;
       }
-</style>
+  </style>
 <script async>(function(w, d) { w.CollectId = "5e52d74bc7a22b54f16318fa"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
 
 </head>
@@ -67,7 +67,7 @@
                 <button type="submit" class="btn btn-primary mt-2">Submit</button>
 
             </form>
-        <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded" alt="Responsive image" height="300">
+            <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded mt-5" alt="Responsive image" height="300">
 <p>Join Date: <%= foundUser.created_on%></p>
         </div>
         <div class="col-6">

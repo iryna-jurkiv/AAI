@@ -2,18 +2,37 @@ const express = require('express');
 const router = express.Router();
 const queries = require('../db/knexQueries');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     let userID = req.cookies.user_id;
 
     if(req.cookies.access != 0) {
         res.redirect('/')
     } else {
+      let foundUser = await queries.users
+          .getOneByUserID(userID)
+          .then(data => {
+              return data;
+          })
+          .catch(err => {
+              console.log(err);
+          });
+          let foundDepartment = await queries.users
+                  .getOneByDepartment(foundUser.department)
+                  .then(data => {
+                      return data;
+                  })
+                  .catch(err => {
+                      console.log(err)
+                  });
+
         res.render('hr/index',{
-                email: req.cookies['email'], userID
+                email: req.cookies['email'], userID, foundUser, foundDepartment
             }
         );
     }
 });
+
+
 
 router.get('/allemployees', async(req, res) => {
     let userID = req.cookies.user_id;
@@ -111,5 +130,19 @@ router.get('/searchResults', async (req, res) => {
         })
     }
 });
+
+router.get('/:id', async (req, res) => {
+    let userID = parseInt(req.params.id);
+        let foundUser = await queries.users
+            .getOneByUserID(userID)
+            .then(data => {
+                return data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        res.render('hr/other', {userID, foundUser})
+    })
+
 
 module.exports = router;

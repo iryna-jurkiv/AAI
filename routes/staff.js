@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const salt = 10;
 
 router.get('/requests', async(req, res) => {
-  
+
     const userID = parseInt(req.cookies.user_id);
 
 
@@ -57,7 +57,17 @@ router.get('/', async (req, res) => {
                     console.log(err)
                 });
             // console.log(foundDepartment)
-        res.render('staff/index', {userID, foundUser, foundManager, foundDepartment});
+
+            let personalInfo = await queries.personal
+                .getPersonalData(userID)
+                .then(data => {
+                    return data;
+                })
+                .catch(err => {
+                    console.log(err)
+                });
+
+        res.render('staff/index', {userID, foundUser, foundManager, foundDepartment, personalInfo});
     }
 });
 

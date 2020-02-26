@@ -2,17 +2,35 @@ const express = require('express');
 const router = express.Router();
 const queries = require('../db/knexQueries');
 
-router.get('/', (req, res) => {
-    const userID = parseInt(req.cookies.user_id);
+router.get('/', async (req, res) => {
+    const userID = req.cookies.user_id;
 
     if(req.cookies.access != 1) {
         res.redirect('/');
     } else {
+      let foundUser = await queries.users
+          .getOneByUserID(userID)
+          .then(data => {
+              return data;
+          })
+          .catch(err => {
+              console.log(err);
+          });
+        const foundEmployees = await queries.users
+            .getManagerStaffList(userID)
+            .then(data => {
+                return data;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
         res.render('manager/index', {
-            employeefirstname: req.cookies['employeefirstname'], userID
+            employeefirstname: req.cookies['employeefirstname'], userID, foundUser, foundEmployees
         });
     }
 });
+
 
 router.get('/allemployees', async(req, res) => {
     const userID = parseInt(req.cookies.user_id);

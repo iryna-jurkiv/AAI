@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<%- include('partials/cssPartials') %>
+<style>
+    #picturebox {
+        border: solid 3px black;
+        padding: 5px;
+        margin-top: 20px;
+        /* width:320px; */
+        height: 350px;
+        margin-left:130px;
+    }
+</style>
+<body>
+<%- include('partials/nav') %>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6">
+                First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>"disabled>
+                Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>"disabled>
+                Job Title: <input class="form-control" type="text" name="job_title" value="<%= foundUser.job_title %>"disabled>
+                Employee Number: <input class="form-control" type="number" name="employee_number" value="<%= foundUser.employee_number %>"disabled>
+                Employee Email: <input class="form-control" type="text" name="email" value="<%= foundUser.email %>"disabled>
+                Department: <input class="form-control" type="text" name="department" value="<%= foundUser.department %>"disabled>
+
+        </div>
+
+<img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded" alt="Responsive image" height="50">    </div>
+    </div>
+        <%- include('partials/jsPartials') %>
+</body>
+</html>

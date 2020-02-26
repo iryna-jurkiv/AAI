@@ -3,20 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-</head>
-<%- include('partials/cssPartials') %>
+    <title>Home Page</title>
+    <%- include('partials/cssPartials')%>
 <style>
 
-</style>
-<body>
 
+#team{
+  border-style:groove;
+}
+
+#personalinfo{
+  border-style:groove;
+
+}
+#checklist{
+  border-style:groove;
+
+}
+
+</style>
+</head>
+<body>
 <%- include('partials/nav') %>
 
-<div class="welcome">
-  <h2 class = 'welcome'>Welcome <%= email%></h2>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+          <br>
+            <h1 > Welcome <%=foundUser.first_name %>!</h1>
+            <br>
+            <div id="personalinfo">
+            <h3 style="background-color: #f2f2f2">  My Profile</h3>
+            <ul>
+              <br>
+              <div id="random">
+              </div>
+              <br>
+              <p>First Name : <%=foundUser.first_name %></p>
+              <p>Last Name : <%= foundUser.last_name %></p>
+              <p>Job Title : <%= foundUser.job_title %></p>
+              <p>Employee Number : <%= foundUser.employee_number %></p>
+            </div>
+            <br>
+            <br>
+            <div id="team">
+            <h3 style="background-color:#f2f2f2"> My team </h3>
+            <ul>
+              <% foundDepartment.forEach(function(department){ %>
+                  <p>                   <img style="border-radius: 50%; width:65px; height:60px;" src="<%= department.image%>" alt=""> </li>
+                    <a href='/staff/<%= department.user_id %>'><%= department.first_name %> <%= department.last_name %> </a>
+                  </p>
+                  <% }); %>
+           </ul>
+        </div>
+        <br>
+        <br>
+        <div id="checklist">
+        <h3 style="background-color: #f2f2f2">  HR Checklist</h3>
+        <iframe src="http://www.hrs.colostate.edu/pdfs/form-onboarding-checklist.pdf" width="100%" height="500px">
+        </iframe>
+    </div>
+    <br>
 </div>
-<% include('partials/jsPartials') %>
-
 </body>
 </html>

@@ -7,14 +7,10 @@
 
 </head>
 <%- include('partials/cssPartials') %>
-
 <body>
 <%- include('partials/nav') %>
-
 <div class="container">
-
     <table class="table mt-5"  id="records_table">
-
         <tr>
             <th scope="col">Employee Number</th>
             <th scope="col">Full Name</th>
@@ -24,7 +20,6 @@
             <th scope="col">Options</th>
         </tr>
         <% for (let i = 0; i < allUsers.length; i++) { %>
-
             <tr>
                 <td><%= allUsers[i].employee_number%></td>
                 <td><%= allUsers[i].first_name %> <%= allUsers[i].last_name %></td>
@@ -34,17 +29,11 @@
                 <td>
                     <a class="btn btn-success" href="/manager/requests/<%= allUsers[i].employee_number%>/">Create Request</a>
                     <a class="btn btn-danger mr-1" style="width: 150px" href="/manager/staffprofile/<%= allUsers[i].user_id%>/">Edit Profile</a>
-
-
                 </td>
             </tr>
         <% } %>
-
     </table>
-
 </div>
-
 <%- include('partials/jsPartials') %>
-
 </body>
 </html>

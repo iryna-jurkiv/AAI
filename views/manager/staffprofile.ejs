@@ -9,8 +9,6 @@
 </head>
 <body>
 <%- include('partials/nav')%>
-
-
 <div class="container mt-5">
     <div class="row">
         <div class="col-6">
@@ -32,12 +30,9 @@
                 <button class="btn btn-primary mt-2">Reset Password</button>
             </form>
         </div>
-
-
         <div class="col-5 text-center mt-4">
             <form action="/api/upload" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
-
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
@@ -48,19 +43,14 @@
                         <label class="custom-file-label" for="inputGroupFile01">Upload a photo</label>
                         <input class="file-path validate" type="text">
                     </div>
-
                 </div>
                 <button type="submit" class="btn btn-primary mt-2">Upload</button>
-
             </form>
             <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded mt-5" alt="Responsive image" height="300">
             <p>Join Date: <%= foundUser.created_on%></p>
-
         </div>
     </div>
 </div>
-
 <%- include('partials/jsPartials')%>
-
 </body>
 </html>

@@ -33,7 +33,10 @@
             </ul>
             <form id="search-form" class="form-inline my-2 my-lg-0" action="/hr/searchresults">
                 <input class="form-control mr-sm-2" id= "search" type="search" name="user_id" placeholder="Search Employee" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btnSubmit">Search</button>
+                <button class="nav-link" type="submit" id="btnSubmit">Search</button>
+            </form>
+            <form action="/api/signout"  class="pl-5" method="post">
+                <button class="nav-link btn-danger" type="submit"> Logout </button>
             </form>
         </div>
     </nav>

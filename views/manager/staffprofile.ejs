@@ -31,20 +31,32 @@
             </form>
         </div>
         <div class="col-5 text-center mt-4">
-            <form action="/api/upload" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" name="myImage" class="custom-file-input" id="inputGroupFile01"
-                               aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Upload a photo</label>
-                        <input class="file-path validate" type="text">
-                    </div>
+          <form action="/api/upload" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
+
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                  </div>
+                  <div class="custom-file">
+                      <input type="file" name="myImage" class="custom-file-input" id="inputGroupFile01"
+                             aria-describedby="inputGroupFileAddon01"required>
+                      <label class="custom-file-label" for="inputGroupFile01"required>Choose file</label>
+                      <input class="file-path validate" type="text">
+                  </div>
+
+              </div>
+              <button type="submit" class="btn btn-primary mt-2">Submit</button>
+
+          </form>
                 </div>
-                <button type="submit" class="btn btn-primary mt-2">Upload</button>
+              </div>
+
+
+
+
+
+
             </form>
             <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded mt-5" alt="Responsive image" height="300">
             <p>Join Date: <%= foundUser.created_on%></p>

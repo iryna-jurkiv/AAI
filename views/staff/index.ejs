@@ -15,6 +15,11 @@
   border-style:groove;
 }
 
+#tasks{
+  border-style:groove;
+
+}
+
 #video{
   border-style:groove;
 }
@@ -62,6 +67,20 @@
             </div>
             <br>
             <br>
+            <div id="tasks">
+            <h3 style="background-color:#f2f2f2">  My Tasks </h3>
+            <ul>
+              <br>
+                <li><% if ((personalInfo == undefined)  || (foundUser.image == undefined))  { %>
+                  <a href='/staff/profile/<%= foundUser.user_id %>'>Complete your personal information and photo upload </a>
+                    <%} else { %>
+                    <p> You have no tasks to complete </p>
+                        <%} %>
+                      </li>
+           </ul>
+        </div>
+        <br>
+        <br>
             <div id="team">
             <h3 style="background-color:#f2f2f2">  Meet the team</h3>
             <ul>

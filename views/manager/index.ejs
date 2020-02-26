@@ -3,17 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+    <%- include('partials/cssPartials')%>
+<style>
+
+
+#team{
+  border-style:groove;
+}
+
+#checklist{
+  border-style:groove;
+
+}
+#personalinfo{
+  border-style:groove;
+
+}
+
+</style>
+
 
 </head>
-<%- include('partials/cssPartials') %>
-
 <body>
-  <%- include('partials/nav') %>
+<%- include('partials/nav') %>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+          <br>
+            <h1 > Welcome <%=foundUser.first_name %>!</h1>
+            <br>
+            <div id="personalinfo">
+            <h3 style="background-color: #f2f2f2">  My Profile</h3>
+            <ul>
+              <br>
+              <div id="random">
+              </div>
+              <p>First Name : <%=foundUser.first_name %></p>
+              <p>Last Name : <%= foundUser.last_name %></p>
+              <p>Job Title : <%= foundUser.job_title %></p>
+              <p>Employee Number : <%= foundUser.employee_number %></p>
+            </div>
+            <br>
+            <br>
+            <div id="team">
+            <h3 style="background-color:#f2f2f2"> My team </h3>
+            <ul>
+              <% foundEmployees.forEach(function(employee){ %>
+                  <p><img style="border-radius: 50%; width:65px; height:60px;" src="<%= employee.image%>" alt=""> </li>
+                  <li><%= employee.first_name %> <%= employee.last_name %> </li>
+                  </p>
+                  <% }); %>
+           </ul>
+        </div>
+        <br>
+        <br>
+        <div id="checklist">
+        <h3 style="background-color: #f2f2f2"> Manager Checklist</h3>
+        <iframe src="https://www.northeastern.edu/hrm/pdfs/manager-onboarding/manager-guide-check-list.pdf" width="100%" height="500px">
+        </iframe>
+    </div>
+    <br>
 
-<h1>Do something with this page</h1>
-
-  <%- include('partials/jsPartials') %>
-
+</div>
 </body>
 </html>

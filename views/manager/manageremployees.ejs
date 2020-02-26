@@ -27,8 +27,8 @@
                 <td><%= allUsers[i].email%></td>
                 <td><%= allUsers[i].access_level%></td>
                 <td>
-                    <a class="btn btn-success" href="/manager/requests/<%= allUsers[i].employee_number%>/">Create Request</a>
-                    <a class="btn btn-danger mr-1" style="width: 150px" href="/manager/staffprofile/<%= allUsers[i].user_id%>/">Edit Profile</a>
+                    <a class="btn btn-primary" href="/manager/requests/<%= allUsers[i].employee_number%>/">Create Request</a>
+                    <a class="btn btn-primary mr-1" style="width: 150px" href="/manager/staffprofile/<%= allUsers[i].user_id%>/">Edit Profile</a>
                 </td>
             </tr>
         <% } %>

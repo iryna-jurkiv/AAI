@@ -1,22 +1,49 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/manager">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto ">
-            <li class="nav-item">
-                <a class="nav-link" href="/manager/employeesprofile/<%= userID %>">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/manager/allemployees">My employees</a>
-            </li>
-            <div id="button"
-            <li class="nav-item">
-            <form action="/api/signout" method="post">
-              <button class="btn btn-primary mt-2" type="submit"> Logout </button>
-             </form>
-             </li>
-             </div>
-</nav>
+<div class="container-fluid">
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/manager">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/manager/staffprofile/<%= userID %>">My Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/manager/allemployees">My Employees</a>
+                </li>
+                <div id="button"
+                <li class="nav-item">
+                <form action="/api/signout" method="post">
+                  <button class="btn btn-primary mt-2" type="submit"> Logout </button>
+                 </form>
+                 </li>
+                 </div>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+<style>
+  .bg-light{
+    <!-- background-color:#D9D9D9!important; -->
+  }
+  .navbar-light .navbar-nav .nav-link{
+  color: #000000;!important;
+  margin-top:10px;
+  /* margin-left:50px; */
+  }
+  #button{
+    margin-left:1000px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+border: none;
+margin-top: 7px;
+min-width: 50px;
+    outline: none !important;
+  }
+</style>

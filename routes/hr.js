@@ -123,17 +123,19 @@ router.get('/searchResults', async (req, res) => {
     let userID = req.cookies.user_id
 
     const {user_id} = req.query;
-    let sqlUserID = parseInt(req.query.user_id)
-    const foundUser = await queries.users
-        .getOneByEmployeeID(sqlUserID)
+
+    console.log(req.query)
+    let sqlUserID = parseInt(req.body.user_id)
+    const foundUsers = await queries.users
+        .getOneByName(user_id)
         .then(data => {
             return data
         })
         .catch(err => {
             console.log(err)
         })
-    if (foundUser) {
-        res.render('hr/searchResults',{foundUser: foundUser, userID} )
+    if (foundUsers) {
+        res.render('hr/searchResults',{foundUsers: foundUsers, userID} )
     } else {
         res.json ({
             message: 'No user found. Please try again'

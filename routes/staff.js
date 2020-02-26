@@ -45,18 +45,18 @@ router.get('/', async (req, res) => {
 
 
 
-router.get('/:id', async (req, res) => {
-    let userID = parseInt(req.params.id);
-        let foundUser = await queries.users
-            .getOneByUserID(userID)
-            .then(data => {
-                return data
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        res.render('staff/other', {userID, foundUser})
-    })
+// router.get('/:id', async (req, res) => {
+//     let userID = req.params.id;
+//         let foundUser = await queries.users
+//             .getOneByUserID(userID)
+//             .then(data => {
+//                 return data
+//             })
+//             .catch(err => {
+//                 console.log(err)
+//             })
+//         res.render('staff/other', {userID, foundUser})
+//     })
 
 router.get('/profile/:id', async (req, res) => {
     if(req.cookies.access == 0) {
@@ -79,17 +79,15 @@ router.get('/profile/:id', async (req, res) => {
             .catch(err => {
                 console.log(err)
             })
-        // console.log(personalInfo)
+        console.log(`ERR: ${personalInfo}`)
         res.render('staff/profile', {userID, foundUser, personalInfo})
     }
 })
 
 router.get('/requests', async(req, res) => {
-    // if(req.cookies.access == 0) {
-    //     res.redirect('/')
-    // } else {
-        const userID = parseInt(req.cookies.user_id);
-        // console.log(userID)
+
+        const userID = req.cookies.user_id;
+        console.log(userID)
         const requests = await queries.requests
             .getAllUsersRequests(userID)
             .then(data => {
@@ -98,7 +96,7 @@ router.get('/requests', async(req, res) => {
             .catch(err => {
                 console.log(err)
             })
-    // console.log(requests)
+    console.log(requests)
 
         res.render('staff/requests', {requests, userID})
     // }
@@ -147,7 +145,7 @@ router.post('/updateemployee', async(req, res) => {
     req.body.user_id = parseInt(req.body.user_id)
 
     if(req.body.password) {
-        req.body.password = await bcrypt.hash(req.body.password, SALT)
+        req.body.password = await bcrypt.hash(req.body.password, 10)
     }
 
     let update = await queries.users

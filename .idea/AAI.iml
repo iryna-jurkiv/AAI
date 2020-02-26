@@ -9,5 +9,6 @@
     <orderEntry type="library" name="@types/jquery" level="application" />
     <orderEntry type="library" name="@types/jsonwebtoken" level="application" />
     <orderEntry type="library" name="@types/node" level="application" />
+    <orderEntry type="library" name="@types/bootstrap" level="application" />
   </component>
 </module>

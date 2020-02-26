@@ -34,13 +34,15 @@ CREATE TABLE user_requests (
     developer_laptop BOOLEAN DEFAULT false,
     monitor BOOLEAN DEFAULT false,
     phone BOOLEAN DEFAULT false,
+    desk BOOLEAN DEFAULT false,
+    building_access BOOLEAN DEFAULT false,
     FOREIGN KEY (user_id) REFERENCES users_table(user_id)
 );
 
 
 -- Initial setup account with a default password set to password
 -- This account is required to set up manager accounts and then for HR and managers to assign the manager role to another user
-INSERT INTO users_table (email, password, access_level, first_name, last_name, employee_number, manager, department) values ('hr@hr.com', '$2b$10$dfO/m20Nq6jrIkVAmqqn5.NW/Jf3vYwb4PxqaLNSOs8d6VhQbu2CS', 2, 'HR', 'User', 1, 1, 'HR');
+INSERT INTO users_table (email, password, access_level, first_name, last_name, employee_number, manager, department) values ('hr@hr.com', '$2b$10$dfO/m20Nq6jrIkVAmqqn5.NW/Jf3vYwb4PxqaLNSOs8d6VhQbu2CS', 0, 'HR', 'User', 1, 1, 'HR');
 
 
 -- Sample Data

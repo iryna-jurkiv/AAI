@@ -256,6 +256,26 @@ router.post('/newrequest/:id', async (req, res) => {
             '</div></body></html>'
         };
 
+    let mailOptionsthree = {
+        from: 'aaiteam20@gmail.com',
+        to: 'aaifacilitiesteam@gmail.com',
+        bcc: 'aaiteam20@gmail.com',
+        subject: 'Facilities Request',
+        html: '<!DOCTYPE html>'+
+            '<html><head><title>Facilities Request</title>'+
+            '</head><body><div>'+
+            '<p>Dear Facilities Team </p>'+
+            '<p>The following facilities requests have been created for:  </p>'
+            + user.first_name +' '
+            + user.last_name
+            +'<p>Desk: </p>'+ foundrequests[0].desk
+            +'<p>Access: </p>' + foundrequests[0].building_access+
+            '<p>Kind Regards, </p>'+
+            '<p>The AAI Team</p>'+
+            '</div></body></html>'
+        };
+
+
         transporter.sendMail(mailOptions,  function(err,data){
             if (err) {
                 console.log('Error occurs', err);
@@ -263,6 +283,15 @@ router.post('/newrequest/:id', async (req, res) => {
                 console.log('Email sent to IT Team');
             }
         });
+
+        transporter.sendMail(mailOptionsthree,  function(err,data){
+            if (err) {
+                console.log('Error occurs', err);
+            } else {
+                console.log('Email sent to facilities Team');
+            }
+        });
+
     res.redirect('/hr/allemployees');
 });
 

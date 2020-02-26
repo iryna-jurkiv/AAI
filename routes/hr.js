@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
                   .catch(err => {
                       console.log(err)
                   });
-
+            console.log(foundDepartment);
         res.render('hr/index',{
                 email: req.cookies['email'], userID, foundUser, foundDepartment
             }
@@ -133,7 +133,7 @@ router.get('/searchResults', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     let userID = parseInt(req.params.id);
-
+    console.log(`user ID ${userID}`)
         let foundUser = await queries.users
             .getOneByUserID(userID)
             .then(data => {
@@ -143,10 +143,10 @@ router.get('/:id', async (req, res) => {
                 console.log(err)
             });
 
-            console.log(foundUser.employee_number)
+            console.log(`Employee_Number ${foundUser.employee_number}`)
 
             let personalInfo = await queries.personal
-                .getPersonalData(foundUser.employee_number)
+                .getPersonalData(userID)
                 .then(data => {
                     return data;
                 })
@@ -156,7 +156,7 @@ router.get('/:id', async (req, res) => {
 
             console.log(`ERR: ${personalInfo}`);
         res.render('hr/other', {userID, foundUser, personalInfo})
-    })
+    });
 
 
 module.exports = router;

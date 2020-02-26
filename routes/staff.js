@@ -2,6 +2,26 @@ const express = require('express');
 const router = express.Router();
 const queries = require('../db/knexQueries');
 const bcrypt = require('bcrypt');
+const salt = 10;
+
+router.get('/requests', async(req, res) => {
+  
+    const userID = parseInt(req.cookies.user_id);
+
+
+        const requests = await queries.requests
+            .getAllUsersRequests(userID)
+            .then(data => {
+                return data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    // console.log(requests)
+
+        res.render('staff/requests', {requests, userID})
+    // }
+})
 
 router.get('/', async (req, res) => {
     if(req.cookies.access == 0) {
@@ -41,6 +61,20 @@ router.get('/', async (req, res) => {
     }
 });
 
+
+router.get('/:id', async (req, res) => {
+    let userID = parseInt(req.params.id);
+        let foundUser = await queries.users
+            .getOneByUserID(userID)
+            .then(data => {
+                return data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        res.render('staff/other', {userID, foundUser})
+    })
+
 router.get('/profile/:id', async (req, res) => {
     if(req.cookies.access == 0) {
         res.redirect('/')
@@ -67,19 +101,6 @@ router.get('/profile/:id', async (req, res) => {
     }
 });
 
-router.get('/requests', async(req, res) => {
-
-        const userID = req.cookies.user_id;
-        const requests = await queries.requests
-            .getAllUsersRequests(userID)
-            .then(data => {
-                return data;
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        res.render('staff/requests', {requests, userID})
-});
 
 router.post('/createpersonaldetails', async(req, res) => {
     req.body.employee_number = parseInt(req.body.employee_number)

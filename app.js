@@ -3,8 +3,10 @@ const cookieParser = require('cookie-parser');
 const nodemailer = require('nodemailer');
 const app = express();
 require('dotenv').config(); // Sets ENV configs for DB access and other global configs
-const multer = require('multer');
-const path = require('path');
+const multer = require('multer')
+const path = require('path')
+const flash = require('express-flash-messages')
+const session = require('express-session')
 
 
 
@@ -14,7 +16,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
-
+app.use(flash())
 const rootRouter = require('./routes/rootRouter'); //Path
 const managerRouter = require('./routes/manager'); //Path
 const staffRouter = require('./routes/staff'); //Path

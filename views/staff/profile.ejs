@@ -5,7 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <%- include('partials/cssPartials')%>
+    <script type="text/javascript" ></script>
+<script>
+    function ischecked() {
+      var entitled = document.getElementByID('entitled_uk').checked;
+      if (entitled == false){
+        alert('Please confirm if you have a valid work permit to work in the UK')
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
 
+  </script>
 <style>
 #picturebox {
         border: solid 3px black;
@@ -22,14 +35,15 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
+          <h1> My profile </h1>
           <br>
-            <h4>Password Reset</h4>
+            <h4>Update your password </h4>
             <br>
             <form action="/staff/updateemployee" method="post">
                 <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
                 First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>" disabled>
                 Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>" disabled>
-                Employee Number: <input class="form-control" type="text" name="employee_number" value="<%= foundUser.employee_number %>" disabled>
+                Employee Number: <input class="form-control" type="number" name="employee_number" value="<%= foundUser.employee_number %>" disabled>
                 Reset Password: <input class="form-control" type="password" name="password" placeholder="Change to reset Password">
                 <!-- <label for="exampleFormControlSelect1">Access Level <br>(current: <%= foundUser.access_level%>)<br></label><br> -->
                 <button class="btn btn-primary">Reset Password</button>
@@ -47,36 +61,39 @@
                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
             </div>
         </div>
-            <button style="margin-left:0px;type="submit" class="btn btn-primary mt-2">Submit</button>
+            <button type="submit" style="margin-left:0px;type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>
         <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded" alt="Responsive image" height="300">
 <p>Join Date: <%= foundUser.created_on%></p>
         </div>
         <div class="col-6">
           <br>
+          <br>
+          <br>
             <h4>Update your personal information</h4>
             <br>
             <% if (personalInfo) { %>
-            <form action="/staff/updatepersonaldetails" method="post">
+            <form onsubmit='return ischecked()' action="/staff/updatepersonaldetails" method="post">
                 <%} else { %>
-                <form action="/staff/createpersonaldetails" method="post">
+                <form onsubmit='return ischecked()' action="/staff/createpersonaldetails" method="post">
                     <%} %>
                 <input type="hidden" name="employee_number" value="<%= foundUser.user_id%>">
-                Account Number <input class="form-control" type="text" name="account_number" value="<% if (personalInfo) { %><%= personalInfo.account_number %> <%}%>" >
-                Sort Code: <input class="form-control" type="text" name="sort_code" value="<% if (personalInfo) { %><%= personalInfo.sort_code  %><%}%>" >
-                Address 1: <input class="form-control" type="text" name="addr_first" value="<% if (personalInfo) { %><%= personalInfo.addr_first  %><%}%>" >
-                Address 2: <input class="form-control" type="text" name="addr_second" value="<% if (personalInfo) { %><%= personalInfo.addr_second  %><%}%>" >
-                City: <input class="form-control" type="text" name="city" value="<% if (personalInfo) { %><%= personalInfo.city  %><%}%>" >
-                Post Code: <input class="form-control" type="text" name="post_code" value="<% if (personalInfo) { %><%=personalInfo.post_code  %><%}%>" >
-                Permitted to work in UK? <input class="form-control" type="checkbox" name="entitled_uk" value="true"<% if (personalInfo) { %> <% if (personalInfo.entitled_uk) { %> checked <%}%>  <%}%>>
+                Account Number <input class="form-control" type="text" name="account_number" value="<% if (personalInfo) { %><%= personalInfo.account_number %> <%}%>" required>
+                Sort Code: <input class="form-control" type="text" name="sort_code" value="<% if (personalInfo) { %><%= personalInfo.sort_code  %><%}%>"  required>
+                Address 1: <input class="form-control" type="text" name="addr_first" value="<% if (personalInfo) { %><%= personalInfo.addr_first  %><%}%>"  required>
+                Address 2: <input class="form-control" type="text" name="addr_second" value="<% if (personalInfo) { %><%= personalInfo.addr_second  %><%}%>" required >
+                City: <input class="form-control" type="text" name="city" value="<% if (personalInfo) { %><%= personalInfo.city  %><%}%>"  required>
+                Post Code: <input class="form-control" type="text" name="post_code" value="<% if (personalInfo) { %><%=personalInfo.post_code  %><%}%>"  required>
+                <!-- Permitted to work in UK? <input class="form-control" type="checkbox" id= "entitled_uk" name="entitled_uk" value="true"<% if (personalInfo) { %> <% if (personalInfo.entitled_uk) { %> checked <%}%>  <%}%>> -->
 
-                    <button class="btn btn-primary">Save Profile Changes</button>
+                    <button type="submit" class="btn btn-primary">Save Profile Changes</button>
             </form>
         </div>
     </div>
 </div>
 
 <%- include('partials/jsPartials')%>
+
 
 
 </body>

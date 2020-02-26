@@ -56,14 +56,14 @@
             <ul>
               <br>
               <div id="random">
-                <img style="border-radius: 50%; height:200px;background-attachment:fixed" src="<%= foundManager.image%>" alt="">
+                <img style="border-radius: 50%; height:200px;background-attachment:fixed" src="<%= foundUser.image%>" alt="">
               </div>
               <br>
               <p>First Name : <%=foundUser.first_name %></p>
               <p>Last Name : <%= foundUser.last_name %></p>
               <p>Job Title : <%= foundUser.job_title %></p>
               <p>Employee Number : <%= foundUser.employee_number %></p>
-              <p>Manager : <%= foundManager.first_name %> <%= foundManager.last_name %></p>
+              <p>Manager : <%if (foundManager) { %><%= foundManager.first_name %> <%= foundManager.last_name %> <% }%> </p>
             </div>
             <br>
             <br>

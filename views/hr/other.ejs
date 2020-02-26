@@ -21,15 +21,15 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-6">
-                First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>"disabled>
-                Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>"disabled>
-                Job Title: <input class="form-control" type="text" name="job_title" value="<%= foundUser.job_title %>"disabled>
-                Employee Number: <input class="form-control" type="number" name="employee_number" value="<%= foundUser.employee_number %>"disabled>
-                Employee Email: <input class="form-control" type="text" name="email" value="<%= foundUser.email %>"disabled>
-                Address First: <input class="form-control" type="text" name="addr_first" value="<%= personalInfo.addr_first %>"disabled>
-                Address Second: <input class="form-control" type="text" name="addr_second" value="<%= personalInfo.addr_second %>"disabled>
-                City: <input class="form-control" type="text" name="city" value="<%= personalInfo.city %>"disabled>
-                Postcode: <input class="form-control" type="text" name="post_code" value="<%= personalInfo.post_code %>"disabled>
+                First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>" disabled>
+                Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>" disabled>
+                Job Title: <input class="form-control" type="text" name="job_title" value="<%= foundUser.job_title %>" disabled>
+                Employee Number: <input class="form-control" type="number" name="employee_number" value="<%= foundUser.employee_number %>" disabled>
+                Employee Email: <input class="form-control" type="text" name="email" value="<%= foundUser.email %>" disabled>
+                Address First: <input class="form-control" type="text" name="addr_first" value="<%if (personalInfo) { %><%= personalInfo.addr_first %> <% }%>" disabled>
+                Address Second: <input class="form-control" type="text" name="addr_second" value="<%if (personalInfo) { %><%= personalInfo.addr_second %> <% }%>" disabled>
+                City: <input class="form-control" type="text" name="city" value="<%if (personalInfo) { %><%= personalInfo.city %> <% } %>" disabled>
+                Postcode: <input class="form-control" type="text" name="post_code" value="<%if (personalInfo) { %><%= personalInfo.post_code %> <% } %>" disabled>
 
         </div>
 

@@ -73,3 +73,14 @@ form.addEventListener('submit', function(e) {
     checkPasswordsMatch(password, password2);
 
 });
+
+function ischecked() {
+  var entitled = document.getElementByID('entitled_uk').checked;
+  if (entitled == false){
+    alert('Please confirm if you have a valid work permit to work in the UK')
+    return false;
+  }
+  else{
+    return true;
+  }
+}

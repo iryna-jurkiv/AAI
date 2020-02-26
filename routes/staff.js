@@ -56,17 +56,16 @@ router.get('/', async (req, res) => {
                 .catch(err => {
                     console.log(err)
                 });
+
+        let personalInfo = await queries.personal
+            .getPersonalData(userID)
+            .then(data => {
+                return data;
+            })
+            .catch(err => {
+                console.log(err)
+            });
             // console.log(foundDepartment)
-
-            let personalInfo = await queries.personal
-                .getPersonalData(userID)
-                .then(data => {
-                    return data;
-                })
-                .catch(err => {
-                    console.log(err)
-                });
-
         res.render('staff/index', {userID, foundUser, foundManager, foundDepartment, personalInfo});
     }
 });
@@ -89,7 +88,7 @@ router.get('/profile/:id', async (req, res) => {
     if(req.cookies.access == 0) {
         res.redirect('/')
     } else {
-        const userID = parseInt(req.cookies.user_id);
+        const userID = req.cookies.user_id;
         let personalInfo = await queries.personal
             .getPersonalData(userID)
             .then(data => {

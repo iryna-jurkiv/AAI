@@ -11,7 +11,7 @@
 <div class="container">
     <h1>Request Page Page</h1>
     <p>Name: <%= foundUser.first_name%> <%= foundUser.last_name%></p>
-    <p>Manager Name (TODO): <%= foundUser.first_name%> <%= foundUser.last_name%></p>
+    <p>Manager Name: <%= foundManager.first_name%> <%= foundManager.last_name%></p>
 
     <form action="/request/newrequest/<%= foundUser.user_id%>/" method="post">
         <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">

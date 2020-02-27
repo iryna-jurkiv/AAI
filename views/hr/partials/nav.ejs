@@ -1,59 +1,47 @@
-<!--<nav>-->
-<!--    <ul>-->
-<!--        <li><a href="/hr/signup">Sign Up</a></li>-->
-<!--        <li><a href="/hr/signin">Sign In</a></li>-->
-<!--        <li><a href="/hr/profile">Profile</a></li>-->
-<!--        <li><a href="/hr/">Home</a></li>-->
-<!--        <li><a href="/hr/addemployee">Add employee</a></li>-->
-<!--    </ul>-->
-<!--</nav>-->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light mr-auto">
 
-     <nav class="navbar navbar-expand-lg navbar-light bg-light mr-auto">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/hr">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/hr/profile/<%= userID %>">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/hr/addemployee">Add employee</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/hr/allemployees">All employees</a>
-                </li>
-
-            </ul>
-            <form id="search-form" class="form-inline my-2 my-lg-0" action="/hr/searchresults">
-                <input class="form-control mr-sm-2" id= "search" type="search" name="user_id" placeholder="Search Employee" aria-label="Search">
-                <button class="nav-link" type="submit" id="btnSubmit">Search</button>
-            </form>
-            <div id="button"
             <li class="nav-item">
+                <a class="nav-link" href="/hr">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/hr/profile/<%= userID %>">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/hr/addemployee">Add employee</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/hr/allemployees">All employees</a>
+            </li>
+
+        </ul>
+        <form id="search-form" class="form-inline my-2 my-lg-0" action="/hr/searchresults">
+            <input class="form-control mr-sm-2" id= "search" type="search" name="user_id" placeholder="Search Employee" aria-label="Search">
+            <button class="nav-link" type="submit" id="btnSubmit">Search</button>
+        </form>
+        <div id="button">
             <form action="/api/signout" method="post">
               <button style="margin-left:70px"class="btn btn-primary" type="submit"> Logout </button>
              </form>
-             </li>
-             </div>
-        </div>
-    </nav>
+         </div>
+    </div>
+</nav>
 
-    <style>
-      #button{
-        /* margin-left:910px; */
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 3px;
-    border: none;
-    /* margin-top: 0px; */
-    min-width: 50px;
-        outline: none !important;
-      }
-      </style>
+<style>
+  #button{
+    /* margin-left:910px; */
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+border: none;
+/* margin-top: 0px; */
+min-width: 50px;
+    outline: none !important;
+  }
+  </style>

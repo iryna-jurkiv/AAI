@@ -11,6 +11,7 @@
         border: solid 3px black;
         padding: 5px;
         margin-top: 40px;
+
     }
 </style>
 <body>
@@ -59,7 +60,7 @@
                 <button type="submit" class="btn btn-primary mt-2">Upload</button>
 
             </form>
-            <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded mt-5" alt="Responsive image" height="300">
+            <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded mt-5" alt="Responsive image" style="width: 200px">
             <p>Join Date: <%= foundUser.created_on%></p>
         </div>
     </div>

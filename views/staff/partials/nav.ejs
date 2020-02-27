@@ -1,63 +1,39 @@
-<!--<nav>-->
-<!--    <ul>-->
-<!--        <li><a href="/hr/signup">Sign Up</a></li>-->
-<!--        <li><a href="/hr/signin">Sign In</a></li>-->
-<!--        <li><a href="/hr/profile">Profile</a></li>-->
-<!--        <li><a href="/hr/">Home</a></li>-->
-<!--        <li><a href="/hr/addemployee">Add employee</a></li>-->
-<!--    </ul>-->
-<!--</nav>-->
-<div class="container-fluid">
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mr-auto">
 
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>  -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/staff">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/staff/profile/<%= userID %>">My Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/staff/requests">My Requests</a>
-                </li>
-                <div id="button"
-                <li class="nav-item">
-                <form action="/api/signout" method="post">
-                  <button class="btn btn-primary mt-2" type="submit"> Logout </button>
-                 </form>
-                 </li>
-                 </div>
-
-            </ul>
-            <!-- <form id="search-form" class="form-inline my-2 my-lg-0" action="/hr/searchresults">
-                <input class="form-control mr-sm-2" id= "search" type="search" name="user_id" placeholder="Search Employee" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btnSubmit">Search</button>
-            </form> -->
+            <li class="nav-item">
+                <a class="nav-link" href="/staff">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="/staff/profile/<%= userID %>">My Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/staff/requests">My Requests</a>
+            </li>
+        </ul>
+        <div id="button">
+            <form action="/api/signout" method="post">
+                <button style="margin-left:70px"class="btn btn-primary" type="submit"> Logout </button>
+            </form>
         </div>
-    </nav>
-</div>
+    </div>
+</nav>
+
 <style>
-  .bg-light{
-    <!-- background-color:#D9D9D9!important; -->
-  }
-  .navbar-light .navbar-nav .nav-link{
-  color: #000000;!important;
-  margin-top:10px;
-  }
-  #button{
-    margin-left:910px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 3px;
-border: none;
-margin-top: 7px;
-min-width: 50px;
-    outline: none !important;
-  }
+    #button{
+        /* margin-left:910px; */
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 3px;
+        border: none;
+        /* margin-top: 0px; */
+        min-width: 50px;
+        outline: none !important;
+    }
 </style>

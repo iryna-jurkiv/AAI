@@ -134,7 +134,17 @@ router.get('/requests/:id', async(req, res) => {
             .catch(err => {
                 console.log(err);
             });
-        res.render('hr/newRequest', {foundUser, userID})
+
+        let foundManager = await queries.users
+            .getManager(foundUser.manager)
+            .then(data => {
+                return data;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        res.render('manager/newRequest', {foundUser, userID, foundManager})
     }
 });
 

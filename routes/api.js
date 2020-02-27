@@ -347,6 +347,7 @@ router.post('/signin',async (req, res) => {
         return res.redirect('/');
     }
 
+
     const compare =  await bcrypt.compare(req.body.password, foundUser[0].password)
         .then(data => {
             return data;

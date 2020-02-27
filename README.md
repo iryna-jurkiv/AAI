@@ -50,9 +50,8 @@ Iryna:
 - We will comment out our code so others can understand it
 - We will require 1 review for each merge
 - We will operate an open & learning culture within our team where anyone can ask questions/speak openly
-- How we will manage front end and back end - Once we have finished our MVP
+- We will all work on front-end and back-end
 - We will do a combination of working on our own & pairing (as a group of 3)
-- We will create the final presentation as we go (next week predominantly)
 
 ## Project Schedule
 
@@ -60,77 +59,74 @@ Iryna:
 - Tuesday, 18th February - Finish setting up web app & Sign up and Sign in (Sprint start)
 - Wednesday, 19th February- Log out & Profile (MVP due) (Sprint finish)
 - Thursday, 20th February -  Search Bar, Nav Bar & Email Requests sent to Employees to login
-- Friday, 21st February- JQuery & AJAX call updating profile + add start date- DONE , add manager email for users, searching by name or employee id, table for all things needed (all in one table)
-WEEKEND: Bootstrap research
-- Monday, 24th February- Front-end pages & Refactoring existing code 
-- Tuesday, 25th February - TBC
-- Wednesday, 26th February -  Feature Freeze & deploy to Herouku
-- Thursday, 27th February- TBC
-- Friday, 28th February - Presentations
+- Friday, 21st February- learning about JQuery & AJAX call to be able to edit information, adding start date, adding manager email for users and searching by name or employee id
+- Monday, 24th February- Front-end pages & Refactoring existing code
+- Tuesday, 25th February - Front-end pages & profile photos
+- Wednesday, 26th February -  Emails to Facilities, Front-end pages and Tasks Left to for Staff  (Feature Freeze)
+- Thursday, 27th February- Deploy to Herouku, Screen Recording and Practice Presentation
+- Friday, 28th February - Final Presentation
 
 
 ## MVP for Wednesday 19th February
 
-- Allow a user to be added to the database (signup)
+- Allow a user to be added to the database
 - Allow a user to login
 - Allow a user to logout
 - Allow a logged in user to see their current profile details
 ​
-## List of features & User Stories Prioritised
+## List of features Implemented
 
-- Allow a user to be added to the database and assign access levels
-- Allow a user to login
-- Allow a user to logout
-- Allow a logged in user to see their current profile details
-- Allow a middle manager to
-- Allow a middle manager with access level >= Manager to sign up a user (Include HR)
-- Allow a middle manager to request a new systems user account(s) for the user
-- Allow a middle manager to request IT equipment for the user
-- Auto generate emails
-- Send email requests to relevant departments (IT, Procurement, HR etc.)
-- Send email to users when items have been completed
-    * User account for initial access can be provided to manager as user may not have access initially
-- More to be added
-- Rather then hard code HTML options, like departmental email address, managers, etc this could be accessed by DB
-    * would allow for changes to be made to the DB list rather then recoding the website for expandability
-- Allow super users to add above details via a service management portal on the site
-- Limit email addresses at the domain level, ie, gov.uk, kpmg.com, vodafone.com etc....
-    * This would prevent accidentally sending out confidential emails to 3rd parties my mistake
-- More to be added
+Staff:
 
-## Final
--one login page for HR, Managers, Users- TO DO: Aaron
--profile photo upload (upload in Node JS, where it is stored, putting link in database)- TO DO: Iryna
--
+- Sign In
+- Sign Out
+- Tasks Left To do
+- Look at others employees' profiles
+- Staff Chatbot
+- Edit and Update Personal Information
+- Upload Profile Photo
+- See Requests Made for Them
+- Role-Based Access and View
+
+Managers:
+
+- Sign In
+- Sign Out
+- See Their Team
+- Edit and Update Personal Information
+- Upload Profile Photo
+- Edit Their Team’s Information
+- Create Requests for Their Team - emails sent to IT & Facilities when requests are created
+- Role-Based Access and View
+
+HR:
+
+- Sign In
+- Sign Out
+- See Employees in Their Department including their contact information
+- Edit their personal information
+- Upload Profile Photo
+- Search for employees
+- Add Employee with emails sent to employee and manager notifying to sign in
+- See all employees
+- Edit all employees' information including access levels
+- Create Requests for all employees with emails sent to IT and Facilities
 
 
-## Quickstart
-​
-### Start
-​
-1. Start the server
+## How to run
+​​
+1. Clone this repository
+
+2. Download all dependencies
+```
+npm install
+```
+3. Create AAI database and tables (details found in Migrations --> 01_ Tables.SQL )
+
+4. Start the server
+
     ```
     npm start
     ```
-1. Browse to [http://localhost:3000](http://localhost:3000)
+5. Browse to [http://localhost:3000](http://localhost:3000)
 ​
-### Test
-​
-* Run all tests
-    ```
-    npm test
-    ```
-* Run a check
-    ```bash
-    npm run lint              # linter only
-    npm run test:unit         # unit tests only
-    npm run test:integration  # integration tests only
-    ```
-​
-#### Start test server
-​
-The server must be running locally with test configuration for the
-integration tests to pass.
-```
-npm run start:test
-```

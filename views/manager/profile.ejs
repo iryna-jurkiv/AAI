@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <%- include('partials/cssPartials')%>
+    <script type="text/javascript" ></script>
+<script>
+    function ischecked() {
+      var entitled = document.getElementByID('entitled_uk').checked;
+      if (entitled == false){
+        alert('Please confirm if you have a valid work permit to work in the UK')
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+
+  </script>
+  <style>
+      #picturebox {
+          border: solid 3px black;
+          padding: 5px;
+          margin-top: 40px;
+      }
+  </style>
+<script async>(function(w, d) { w.CollectId = "5e52d74bc7a22b54f16318fa"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
+
+</head>
+<body>
+<%- include('partials/nav')%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+          <h1> My profile </h1>
+          <br>
+            <h4>Update your password </h4>
+            <br>
+            <form action="/staff/updateemployee" method="post">
+                <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
+                First Name: <input class="form-control" type="text" name="first_name" value="<%= foundUser.first_name %>" disabled>
+                Last Name: <input class="form-control" type="text" name="last_name" value="<%= foundUser.last_name %>" disabled>
+                Employee Number: <input class="form-control" type="number" name="employee_number" value="<%= foundUser.employee_number %>" disabled>
+                Reset Password: <input class="form-control" type="password" name="password" placeholder="Change to reset Password">
+                <!-- <label for="exampleFormControlSelect1">Access Level <br>(current: <%= foundUser.access_level%>)<br></label><br> -->
+                <button class="btn btn-primary">Reset Password</button>
+            </form>
+            <br>
+            <form action="/api/upload" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="user_id" value="<%= foundUser.user_id%>">
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" name="myImage" class="custom-file-input" id="inputGroupFile01"
+                               aria-describedby="inputGroupFileAddon01"required>
+                        <label class="custom-file-label" for="inputGroupFile01"required>Choose file</label>
+                        <input class="file-path validate" type="text">
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+
+            </form>
+            <img id="picturebox" src="<%= foundUser.image%>" class="img-fluid rounded mt-5" alt="Responsive image" height="300">
+<p>Join Date: <%= foundUser.created_on%></p>
+        </div>
+        <div class="col-6">
+          <br>
+          <br>
+          <br>
+            <h4>Update your personal information</h4>
+            <br>
+            <% if (personalInfo) { %>
+            <form onsubmit='return ischecked()' action="/staff/updatepersonaldetails" method="post">
+                <%} else { %>
+                <form onsubmit='return ischecked()' action="/staff/createpersonaldetails" method="post">
+                    <%} %>
+                <input type="hidden" name="employee_number" value="<%= foundUser.user_id%>">
+                Account Number <input class="form-control" type="text" name="account_number" value="<% if (personalInfo) { %><%= personalInfo.account_number %> <%}%>" required>
+                Sort Code: <input class="form-control" type="text" name="sort_code" value="<% if (personalInfo) { %><%= personalInfo.sort_code  %><%}%>"  required>
+                Address 1: <input class="form-control" type="text" name="addr_first" value="<% if (personalInfo) { %><%= personalInfo.addr_first  %><%}%>"  required>
+                Address 2: <input class="form-control" type="text" name="addr_second" value="<% if (personalInfo) { %><%= personalInfo.addr_second  %><%}%>" required >
+                City: <input class="form-control" type="text" name="city" value="<% if (personalInfo) { %><%= personalInfo.city  %><%}%>"  required>
+                Post Code: <input class="form-control" type="text" name="post_code" value="<% if (personalInfo) { %><%=personalInfo.post_code  %><%}%>"  required>
+                <!-- Permitted to work in UK? <input class="form-control" type="checkbox" id= "entitled_uk" name="entitled_uk" value="true"<% if (personalInfo) { %> <% if (personalInfo.entitled_uk) { %> checked <%}%>  <%}%>> -->
+
+                    <button type="submit" class="btn btn-primary">Save Profile Changes</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/jsPartials')%>
+
+
+
+</body>
+</html>

@@ -7,6 +7,11 @@
     <%- include('partials/cssPartials')%>
 <style>
 
+#random{
+  /* margin-left:500px; */
+  position:relative;
+  left:0px;
+}
 
 #team{
   border-style:groove;
@@ -38,6 +43,7 @@
             <ul>
               <br>
               <div id="random">
+                <img style="border-radius: 50%; height:200px;background-attachment:fixed" src="<%= foundUser.image%>" alt="">
               </div>
               <p>First Name : <%=foundUser.first_name %></p>
               <p>Last Name : <%= foundUser.last_name %></p>

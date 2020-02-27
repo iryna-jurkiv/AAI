@@ -10,6 +10,7 @@ CREATE TABLE users_table(
    access_level INTEGER,
    password VARCHAR(256),
    FOREIGN KEY (manager) references users_table(user_id),
+   image VARCHAR(200),
    created_on TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -43,9 +44,10 @@ CREATE TABLE user_requests (
 -- Initial setup account with a default password set to password
 -- This account is required to set up manager accounts and then for HR and managers to assign the manager role to another user
 
-INSERT INTO users_table (email, password, access_level, first_name, last_name, employee_number, manager, department) values ('hr@hr.com', '$2b$10$dfO/m20Nq6jrIkVAmqqn5.NW/Jf3vYwb4PxqaLNSOs8d6VhQbu2CS', 0, 'HR', 'User', 1, 1, 'HR');
+INSERT INTO users_table (email, password, access_level, first_name, last_name, employee_number, department) values ('hr@hr.com', '$2b$10$dfO/m20Nq6jrIkVAmqqn5.NW/Jf3vYwb4PxqaLNSOs8d6VhQbu2CS', 0, 'HR', 'User', 1, 'HR');
 
-INSERT INTO users_table (email, password, access_level, first_name, last_name, employee_number,manager, department) values ('employee@hr.com', '$2b$10$dfO/m20Nq6jrIkVAmqqn5.NW/Jf3vYwb4PxqaLNSOs8d6VhQbu2CS', 2, 'Employee', 'Surname', 150, 9, 'HR');
+INSERT INTO users_table (email, password, access_level, first_name, last_name, employee_number,manager, department) values ('manager@hr.com', '$2b$10$dfO/m20Nq6jrIkVAmqqn5.NW/Jf3vYwb4PxqaLNSOs8d6VhQbu2CS', 1, 'Manager', 'Surname', 2, 1, 'HR');
+INSERT INTO users_table (email, password, access_level, first_name, last_name, employee_number,manager, department) values ('employee@hr.com', '$2b$10$dfO/m20Nq6jrIkVAmqqn5.NW/Jf3vYwb4PxqaLNSOs8d6VhQbu2CS', 2, 'Employee', 'Surname', 3, 2, 'HR');
 
 
 

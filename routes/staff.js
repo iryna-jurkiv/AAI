@@ -17,7 +17,6 @@ router.get('/requests', async(req, res) => {
             .catch(err => {
                 console.log(err)
             })
-    // console.log(requests)
 
         res.render('staff/requests', {requests, userID})
     // }
@@ -105,7 +104,7 @@ router.get('/profile/:id', async (req, res) => {
             .catch(err => {
                 console.log(err);
             });
-        console.log(`ERR: ${personalInfo}`);
+        // console.log(`ERR: ${personalInfo}`);
         res.render('staff/profile', {userID, foundUser, personalInfo})
     }
 });

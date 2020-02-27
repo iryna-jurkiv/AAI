@@ -24,7 +24,6 @@ router.get('/', async (req, res) => {
                   .catch(err => {
                       console.log(err)
                   });
-            console.log(foundDepartment);
         res.render('hr/index',{
                 email: req.cookies['email'], userID, foundUser, foundDepartment
             }
@@ -86,7 +85,16 @@ router.get('/requests/:id', async(req, res) => {
             .catch(err => {
                 console.log(err);
             });
-        res.render('hr/newRequest', {foundUser, userID})
+
+        let foundManager = await queries.users
+                .getManager(foundUser.manager)
+                .then(data => {
+                    return data;
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        res.render('hr/newRequest', {foundUser, userID, foundManager})
     }
 });
 
@@ -133,7 +141,6 @@ router.get('/searchResults', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     let userID = parseInt(req.params.id);
-    console.log(`user ID ${userID}`)
         let foundUser = await queries.users
             .getOneByUserID(userID)
             .then(data => {
@@ -143,7 +150,6 @@ router.get('/:id', async (req, res) => {
                 console.log(err)
             });
 
-            console.log(`Employee_Number ${foundUser.employee_number}`)
 
             let personalInfo = await queries.personal
                 .getPersonalData(userID)
@@ -154,7 +160,6 @@ router.get('/:id', async (req, res) => {
                     console.log(err)
                 });
 
-            console.log(`ERR: ${personalInfo}`);
         res.render('hr/other', {userID, foundUser, personalInfo})
     });
 
